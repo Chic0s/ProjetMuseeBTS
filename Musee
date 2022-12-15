@@ -1,1 +1,52 @@
-<mxfile host="app.diagrams.net" modified="2022-12-15T13:08:23.180Z" agent="5.0 (Windows)" version="20.6.2" etag="TDNCXzLrRX7klXN9aaSj" type="github"><diagram id="gUJtJfRxLCbtn3_t9NhK">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-12-15T13:24:31.073Z" agent="5.0 (Windows)" version="20.6.2" etag="ZsxftIAMfNHY1L7V0CY9" type="github">
+  <diagram id="reL-14wQF_75PuRZE0Fy" name="Page-1">
+    <mxGraphModel dx="1038" dy="536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-1" value="Agent de sécurité" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="200" width="40" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-2" value="Architecte" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="430" width="40" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-3" value="Définir Plan" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="235" y="430" width="225" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-4" value="&lt;div&gt;Créer des salles,&lt;/div&gt;&lt;div&gt;Entrée, Sortie,&lt;/div&gt;&lt;div&gt;Couloir&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0jO3SAHQ5kArXS6Ej6Wn-3">
+          <mxGeometry y="29" width="225" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-7" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=none;endFill=0;endSize=6;align=left;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="0jO3SAHQ5kArXS6Ej6Wn-2" target="0jO3SAHQ5kArXS6Ej6Wn-4">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="120" y="470" as="sourcePoint" />
+            <mxPoint x="280" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-8" value="Assurer la protection" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="60" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-9" value="Visionner les caméras,&lt;br&gt;Protéger les œuvres&lt;br&gt;&lt;div&gt;et les visiteurs&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0jO3SAHQ5kArXS6Ej6Wn-8">
+          <mxGeometry y="29" width="220" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-10" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=none;endFill=0;endSize=6;align=left;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.014;entryY=0.316;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="0jO3SAHQ5kArXS6Ej6Wn-1" target="0jO3SAHQ5kArXS6Ej6Wn-9">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="110" y="230.01" as="sourcePoint" />
+            <mxPoint x="220" y="239.9867441860465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-11" value="Gestion des éléments" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=29;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="190" width="240" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-12" value="Créer des évènements &lt;br&gt;&lt;div&gt;Ajouter, modifier, supprimer des capteurs &lt;br&gt;et caméra&lt;br&gt;Vérifier le bon fonctionnement des éléments&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0jO3SAHQ5kArXS6Ej6Wn-11">
+          <mxGeometry y="29" width="240" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="0jO3SAHQ5kArXS6Ej6Wn-13" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=none;endFill=0;endSize=6;align=left;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="0jO3SAHQ5kArXS6Ej6Wn-1" target="0jO3SAHQ5kArXS6Ej6Wn-12">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="120.00000000000011" y="245" as="sourcePoint" />
+            <mxPoint x="296.91999999999996" y="124.596" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
