@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-01-20T11:00:00.416Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 OPR/94.0.0.0" etag="wwarSKFd9rXfPwX3L_wv" version="20.8.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-20T11:00:27.743Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 OPR/94.0.0.0" etag="Gix1oiQaTzpBetqRzgYb" version="20.8.8" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1952" dy="1294" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -154,7 +154,10 @@
           <mxGeometry x="340" y="90" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="m4tMUKN0-LNanp_S--q_-37" value="Emplacement" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="419" y="-157" width="150" height="170" as="geometry" />
+          <mxGeometry x="419" y="-157" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="m4tMUKN0-LNanp_S--q_-44" value="Etage,Salle" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="m4tMUKN0-LNanp_S--q_-37">
+          <mxGeometry y="30" width="150" height="26" as="geometry" />
         </mxCell>
         <mxCell id="m4tMUKN0-LNanp_S--q_-39" value="Infos Telephone" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="901" y="-112" width="150" height="170" as="geometry" />
