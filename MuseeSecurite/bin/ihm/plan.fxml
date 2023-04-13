@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.MainController">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Plan">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.7606951871657752" prefHeight="373.0" prefWidth="600.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TabPane fx:id="etage" prefHeight="369.0" prefWidth="452.0" tabClosingPolicy="UNAVAILABLE" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Button layoutX="11.0" layoutY="147.0" mnemonicParsing="false" text="Ajouter un Element" />
+                                    <Button fx:id="removeEtage" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="112.0" text="Supprimer l'etage">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="4.0" layoutY="186.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="131.0" text="Supprimer un Element">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="12.0" layoutY="69.0" mnemonicParsing="false" text="Sauvegarder Etage" />
+                                    <Button fx:id="addRedCircleButton" layoutX="44.0" layoutY="244.0" mnemonicParsing="false" onAction="#initialize" text="Camera" />
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Camera">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" text="Ajouter" />
+                        <Button layoutX="101.0" layoutY="14.0" mnemonicParsing="false" text="Modifier" />
+                        <Button layoutX="175.0" layoutY="14.0" mnemonicParsing="false" text="Supprimer" />
+                        <TableView layoutX="16.0" layoutY="49.0" prefHeight="303.0" prefWidth="569.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Capteurs">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="36.0" layoutY="14.0" mnemonicParsing="false" text="Ajouter" />
+                        <Button layoutX="101.0" layoutY="14.0" mnemonicParsing="false" text="Modifier" />
+                        <Button layoutX="175.0" layoutY="14.0" mnemonicParsing="false" text="Supprimer" />
+                        <TableView layoutX="16.0" layoutY="49.0" prefHeight="303.0" prefWidth="569.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="C1" />
+                              <TableColumn prefWidth="75.0" text="C2" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Alertes">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.47994652406417104" prefHeight="371.0" prefWidth="600.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TreeTableView layoutX="42.0" layoutY="101.0" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TreeTableColumn prefWidth="75.0" text="C1" />
+                                        <TreeTableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TreeTableView>
+                                    <Text layoutX="42.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TreeTableView layoutX="54.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TreeTableColumn prefWidth="75.0" text="C1" />
+                                        <TreeTableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TreeTableView>
+                                    <Button layoutX="48.0" layoutY="50.0" mnemonicParsing="false" text="Ajouter" />
+                                    <Button layoutX="118.0" layoutY="50.0" mnemonicParsing="false" text="Modifier" />
+                                    <Button layoutX="189.0" layoutY="50.0" mnemonicParsing="false" text="Supprimer" />
+                                    <Text layoutX="48.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capteurs" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Info Securité">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="343.0" prefWidth="569.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</Pane>
