@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Set;
 
 import securite.ElementDeSecurite;
 
@@ -11,7 +12,7 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 
 	private static final String EMPLACEMENT = "Emplacement";
 	private static final String MODELE = "Modele";
-	private static final String TABLE = "Capteur";
+	private static final String TABLE = "Element";
 	private static final String NOM = "Nom";
 	private static final String CLE_PRIMAIRE = "ID";
 	
@@ -102,6 +103,10 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 		} 
 		return success;	
 	}
+	
+	public Set<Integer> getKeys() {
+	    return donnees.keySet();
+	}
 
 	@Override
 	public ElementDeSecurite read(int id) {
@@ -119,5 +124,6 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 		}
 		return elem;
 	}
+	
 
 }

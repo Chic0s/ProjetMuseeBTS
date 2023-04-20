@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -11,10 +12,31 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
+import dao.Connexion;
+import dao.ElementDeSecuriteDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import securite.ElementDeSecurite;
+
 
 public class MainController {
+    @FXML
+    private TableView<ElementDeSecuriteFX> tableView;
+
+    @FXML
+    private TableColumn<ElementDeSecuriteFX, Integer> idColumn;
+
+    @FXML
+    private TableColumn<ElementDeSecuriteFX, String> nomColumn;
+
+    @FXML
+    private TableColumn<ElementDeSecuriteFX, String> modeleColumn;
+
+    @FXML
+    private TableColumn<ElementDeSecuriteFX, String> emplacementColumn;
     
     @FXML
     private Button removeEtage;
@@ -30,14 +52,20 @@ public class MainController {
     
     @FXML
     private Button addRedCircleButton;
+    
+    @FXML
+    private Button addCaptorButton;
 
     private int tabCounter = 0;
 
+    @FXML
+    private TextField circleNameInput;
 
     
     @FXML
     public void initialize() {
-        // Ajoute un nouvel onglet lors du clic sur le bouton
+    	Connexion.getInstance();
+    	fillTableView();
         
         // Enleve un nouvel onglet lors du clic sur le bouton
         removeEtage.setOnAction(e -> {
@@ -47,44 +75,35 @@ public class MainController {
                 tabCounter = tabCounter-1;
             }
         });
-        
         etage.setOnDragOver(event -> handleDragOver(event));
         etage.setOnDragDropped(event -> handleDragDropped(event));
-        addRedCircleButton.setOnAction(e -> {addRedCircleWithText();});
+        addRedCircleButton.setOnAction(e -> {(new PlanItems()).addItems(circleNameInput,etage,Color.RED);});
+        addCaptorButton.setOnAction(e -> {(new PlanItems()).addItems(circleNameInput,etage,Color.GREEN);});
 
         
     }
     
+    private void fillTableView() {
+        // Récupérez les données à l'aide de ElementDeSecuriteDAO
+        ElementDeSecuriteDAO dao = ElementDeSecuriteDAO.getInstance();
+        ObservableList<ElementDeSecuriteFX> data = FXCollections.observableArrayList();
 
-    private void addRedCircleWithText() {
-        // Crée un cercle rouge
-        Circle circle = new Circle(25, Color.RED);
-        circle.setLayoutX(50);
-        circle.setLayoutY(50);
+        for (int id : dao.getKeys()) {
+            ElementDeSecurite elem = dao.read(id);
+            data.add(new ElementDeSecuriteFX(elem.getId(), elem.getNom(), elem.getModele(), elem.getEmplacement()));
+        }
 
-        // Ajoute un nom au-dessus du cercle
-        Text circleName = new Text("Camera");
-        circleName.setLayoutX(50);
-        circleName.setLayoutY(50);
+        // Configurez les colonnes pour utiliser les propriétés JavaFX
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));  
+        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        modeleColumn.setCellValueFactory(new PropertyValueFactory<>("modele"));
+        emplacementColumn.setCellValueFactory(new PropertyValueFactory<>("emplacement"));
 
-        // Gestion des événements pour déplacer le cercle et le texte
-        circle.setOnMousePressed(event -> {
-            circle.setUserData(new double[] {event.getX(), event.getY()});
-        });
+        // Ajoutez les données au TableView
+        tableView.setItems(data);
+    }
 
-        circle.setOnMouseDragged(event -> {
-            double[] startCoords = (double[]) circle.getUserData();
-            double deltaX = event.getX() - startCoords[0];
-            double deltaY = event.getY() - startCoords[1];
-            circle.setLayoutX(circle.getLayoutX() + deltaX);
-            circle.setLayoutY(circle.getLayoutY() + deltaY);
-            circleName.setLayoutX(circleName.getLayoutX() + deltaX);
-            circleName.setLayoutY(circleName.getLayoutY() + deltaY);
-         });
-		
-	}
-
-
+      
 	private void addTabWithImage(String imagePath) {
         // Création d'une nouvelle image
         Image image;
