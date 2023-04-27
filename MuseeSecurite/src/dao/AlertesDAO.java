@@ -50,7 +50,7 @@ public class AlertesDAO extends DAO<Alertes>{
 			if (rs.next()) {
 				alerte.setId(rs.getInt(1));
 			}
-			donnees.put(alerte.getId(), alerte);
+			data.put(alerte.getId(), alerte);
 
 		} catch (SQLException e) {
 			success=false;
@@ -69,7 +69,7 @@ public class AlertesDAO extends DAO<Alertes>{
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
 			pst.setInt(1, id);
 			pst.executeUpdate();
-			donnees.remove(id);
+			data.remove(id);
 		} catch (SQLException e) {
 			success=false;
 			e.printStackTrace();
@@ -97,7 +97,7 @@ public class AlertesDAO extends DAO<Alertes>{
 			pst.setInt(5, id) ;
 			pst.executeUpdate() ;
 			
-			donnees.put(id, alerte);
+			data.put(id, alerte);
 		} catch (SQLException e) {
 			success = false;
 			e.printStackTrace();

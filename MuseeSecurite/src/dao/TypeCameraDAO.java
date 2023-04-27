@@ -8,48 +8,48 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import securite.ElementDeSecurite;
+import securite.TypeCamera;
 
-public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
+public class TypeCameraDAO extends DAO<TypeCamera>{
 
-	private static final String SERVEUR = "Serveur";
-	private static final String ETAT = "Etat";
-	private static final String EMPLACEMENT = "Emplacement";
-	private static final String MODELE = "Modele";
-	private static final String TABLE = "ElementDeSecurite";
-	private static final String NOM = "Nom";
+	private static final String FLUX = "Flux";
+	private static final String ANGLEDEVUE = "AngleDeVue";
+	private static final String TYPEDECAMERA = "TypeDeCamera";
+	private static final String DESCRIPTION = "Description";
+	
+	private static final String TABLE = "TypeCamera";
+
 	private static final String CLE_PRIMAIRE = "ID";
 	
-	private static ElementDeSecuriteDAO instance=null; 
+	private static TypeCameraDAO instance=null; 
 	
-	public static ElementDeSecuriteDAO getInstance(){
+	public static TypeCameraDAO getInstance(){
 		if (instance==null){
-			instance = new ElementDeSecuriteDAO();
+			instance = new TypeCameraDAO();
 		}
 		return instance;
 	}
 
-	private ElementDeSecuriteDAO() {
+	private TypeCameraDAO() {
 		super();
 	}
 
 	
 	@Override
-	public boolean create(ElementDeSecurite elem) {
+	public boolean create(TypeCamera elem) {
 		boolean success=true;
 		try {
-			String requete = "INSERT INTO "+TABLE+" ("+NOM+", "+MODELE+", "+EMPLACEMENT+", "+SERVEUR+","+ETAT+") VALUES (?, ?, ?, ?, ?)";
+			String requete = "INSERT INTO "+TABLE+" ("+FLUX+", "+ANGLEDEVUE+", "+TYPEDECAMERA+","+DESCRIPTION+") VALUES (?, ?, ?, ?)";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
 			
 			
-			pst.setString(1, elem.getNom());
-			pst.setString(2, elem.getModele());
-			pst.setString(3, elem.getEmplacement());
-			pst.setString(4, elem.getServeur());
-			pst.setBoolean(5, elem.getEtat());
+			pst.setString(1, elem.getFlux());
+			pst.setString(2, elem.getAngledevue());
+			pst.setString(3, elem.getTypedecamera());
+			pst.setString(4, elem.getDescription());
+			
 
 			pst.executeUpdate();
-
 
 			ResultSet rs = pst.getGeneratedKeys();
 			if (rs.next()) {
@@ -66,7 +66,7 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 	}
 
 	@Override
-	public boolean delete(ElementDeSecurite elem) {
+	public boolean delete(TypeCamera elem) {
 		boolean success = true;
 		try {
 			int id = elem.getId();
@@ -84,25 +84,23 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 	
 
 	@Override
-	public boolean update(ElementDeSecurite elem) {
+	public boolean update(TypeCamera elem) {
 		boolean success=true;
 
-		String nom =elem.getNom();
-		String modele =elem.getModele();
-		String emplacement = elem.getEmplacement();
-		String serveur = elem.getServeur();
-		Boolean etat = elem.getEtat();
+		String flux =elem.getFlux();
+		String angledevue =elem.getAngledevue();
+		String typedecamera = elem.getTypedecamera();
+		String description = elem.getDescription();
 		int id = elem.getId();
 
 		try {
 			String requete = "UPDATE "+TABLE+" SET nom = ?, mod = ?, emp = ? WHERE "+CLE_PRIMAIRE+" = ?";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
-			pst.setString(1,nom) ; 
-			pst.setString(2,modele) ; 
-			pst.setString(3, emplacement) ;
-			pst.setString(4, serveur);
-			pst.setBoolean(5, etat);
-			pst.setInt(6, id) ;
+			pst.setString(1,flux) ; 
+			pst.setString(2,angledevue) ; 
+			pst.setString(3, typedecamera) ;
+			pst.setString(4, description) ;
+			pst.setInt(5, id) ;
 			pst.executeUpdate() ;
 			data.put(id, elem);
 		} catch (SQLException e) {
@@ -116,9 +114,9 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 	    return data.keySet();
 	}
 	
-	public List<ElementDeSecurite> readAll() {
-		List<ElementDeSecurite> elemList = new ArrayList<ElementDeSecurite>();
-		ElementDeSecurite elem = null;
+	public List<TypeCamera> readAll() {
+		List<TypeCamera> elemList = new ArrayList<TypeCamera>();
+		TypeCamera elem = null;
 		try {
 			String requete = "SELECT * FROM " + TABLE;
 			ResultSet rep = Connexion.executeQuery(requete);
@@ -136,8 +134,8 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 	}
 	
 	@Override
-	public ElementDeSecurite read(int id) {
-		ElementDeSecurite elem = null;
+	public TypeCamera read(int id) {
+		TypeCamera elem = null;
 		
 			if(data.containsKey(id)) {
 				elem = data.get(id);
@@ -147,12 +145,11 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 				String requete = "SELECT * FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = "+id;
 				ResultSet rs = Connexion.executeQuery(requete);
 				rs.next();
-				String nom = rs.getString(NOM);
-				String modele = rs.getString(MODELE);
-				String emplacement = rs.getString(EMPLACEMENT);
-				String serveur = rs.getString(SERVEUR);
-				Boolean etat = rs.getBoolean(ETAT);
-				elem = new ElementDeSecurite (id, nom, modele, emplacement, serveur, etat);
+				String flux = rs.getString(FLUX);
+				String angledevue = rs.getString(ANGLEDEVUE);
+				String typedecamera = rs.getString(TYPEDECAMERA);
+				String description = rs.getString(DESCRIPTION);
+				elem = new TypeCamera (id, flux, angledevue, typedecamera,description);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

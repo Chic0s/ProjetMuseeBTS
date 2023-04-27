@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import securite.Serveur;
 
 public class ServeurDAO extends DAO<Serveur>{
@@ -47,7 +50,7 @@ public class ServeurDAO extends DAO<Serveur>{
 			if (rs.next()) {
 				serv.setId(rs.getInt(1));
 			}
-			donnees.put(serv.getId(), serv);
+			data.put(serv.getId(), serv);
 
 		} catch (SQLException e) {
 			success=false;
@@ -66,7 +69,7 @@ public class ServeurDAO extends DAO<Serveur>{
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
 			pst.setInt(1, id);
 			pst.executeUpdate();
-			donnees.remove(id);
+			data.remove(id);
 		} catch (SQLException e) {
 			success=false;
 			e.printStackTrace();
@@ -91,12 +94,31 @@ public class ServeurDAO extends DAO<Serveur>{
 			pst.setString(3, usage) ;
 			pst.setInt(4, id) ;
 			pst.executeUpdate() ;
-			donnees.put(id, serv);
+			data.put(id, serv);
 		} catch (SQLException e) {
 			success = false;
 			e.printStackTrace();
 		} 
 		return success;	
+	}
+	
+	public List<Serveur> readAll() {
+		List<Serveur> elemList = new ArrayList<Serveur>();
+		Serveur elem = null;
+		try {
+			String requete = "SELECT * FROM " + TABLE;
+			ResultSet rep = Connexion.executeQuery(requete);
+			while(rep.next()) {
+				int idZone = rep.getInt(1);
+				elem = this.read(idZone);
+				elemList.add(elem);
+			}
+	    } catch (SQLException e) {
+	        // e.printStackTrace();
+	        System.out.println("Échec de la tentative d'interrogation Select * : " + e.getMessage()) ;
+	    }
+		System.out.println(elemList.size());
+		return elemList;
 	}
 
 	@Override

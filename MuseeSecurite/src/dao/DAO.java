@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public abstract class DAO<T> {
 	
-	protected final HashMap<Integer, T> donnees = new HashMap<Integer, T>();
+	protected final HashMap<Integer, T> data = new HashMap<Integer, T>();
 		
 	/**
 	 * Méthode de création d'un objet de type "T",

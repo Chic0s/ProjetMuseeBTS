@@ -5,13 +5,17 @@ public class ElementDeSecurite {
 	private String nom;
 	private String modele;
 	private String emplacement;
+	private String serveur;
+	private Boolean etat;
 	
-	public ElementDeSecurite(int id, String nom, String modele, String emplacement) {
+	public ElementDeSecurite(int id, String nom, String modele, String emplacement, String serveur, Boolean etat) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.modele = modele;
 		this.emplacement = emplacement;
+		this.serveur = serveur;
+		this.etat = etat;
 	}
 	
 
@@ -42,6 +46,27 @@ public class ElementDeSecurite {
 	}
 	@Override
 	public String toString() {
-		return "ElementDeSecurite [id=" + id + ", nom=" + nom + ", modele=" + modele + ", emplacement=" + emplacement + "]";
+		return "ElementDeSecurite [id=" + id + ", nom=" + nom + ", modele=" + modele + ", emplacement=" + emplacement
+				+ ", serveur=" + serveur + ", etat=" + etat + "]";
+	}
+
+
+	public String getServeur() {
+		return serveur;
+	}
+
+
+	public void setServeur(String serveur) {
+		this.serveur = serveur;
+	}
+
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+
+	public void setEtat(Boolean etat) {
+		this.etat = etat;
 	}
 }
