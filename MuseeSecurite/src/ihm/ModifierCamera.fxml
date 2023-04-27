@@ -25,6 +25,6 @@
       <ComboBox fx:id="emplacementCamera" layoutX="99.0" layoutY="153.0" prefWidth="150.0" />
       <ComboBox fx:id="serveurCamera" layoutX="77.0" layoutY="188.0" prefWidth="150.0" />
       <CheckBox fx:id="etatCamera" layoutX="63.0" layoutY="229.0" mnemonicParsing="false" />
-      <Button fx:id="enregistrerCamera" layoutX="137.0" layoutY="311.0" mnemonicParsing="false" text="Enregistrer" />
+      <Button fx:id="enregistrerCamera" layoutX="137.0" layoutY="311.0" mnemonicParsing="false" onAction="#handleUpdateCameraAction" text="Enregistrer" />
    </children>
 </Pane>

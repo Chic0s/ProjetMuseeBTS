@@ -22,6 +22,10 @@ public class InfotelephoneController {
         }
         return instance;
     }
+    
+	private InfotelephoneController() {
+		super();
+	}
 	
 	// Récupération du chemin d'accès du Fichier puis récupération de la balise démarche pour obtenir le texte
 	public void updateTextFromFile(String filePath, Label textField) {

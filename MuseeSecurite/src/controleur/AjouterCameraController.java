@@ -1,14 +1,8 @@
 package controleur;
 
 import javafx.scene.control.CheckBox;
-import java.util.List;
 
 import dao.ElementDeSecuriteDAO;
-import dao.SalleDAO;
-import dao.ServeurDAO;
-import dao.TypeCameraDAO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -20,8 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import securite.ElementDeSecurite;
-import securite.Salle;
-import securite.Serveur;
 import securite.TypeCamera;
 
 
@@ -59,9 +51,9 @@ public class AjouterCameraController {
 	
 	@FXML
 	public void initialize() {
-	    this.populateTypeCameraListView();
-	    this.populateServeurComboBox();
-	    this.populateSalleComboBox();
+	    ComboBoxEdit.getInstance().populateTypeCameraListView(typeCameraListView);
+	    ComboBoxEdit.getInstance().populateServeurComboBox(serveurComboBox);
+	    ComboBoxEdit.getInstance().populateSalleComboBox(salleComboBox);
 	    
 	    
 	    //Ecouteur d'évènement 
@@ -77,35 +69,7 @@ public class AjouterCameraController {
 	    });
 	}
 
-	
-	private void populateSalleComboBox() {
-	    List<Salle> sallelist = SalleDAO.getInstance().readAll();
-	    ObservableList<String> salleNoms = FXCollections.observableArrayList();
-	    for (Salle salle : sallelist) {
-	        salleNoms.add(salle.getNom());
-	    }
-	    salleComboBox.setItems(salleNoms);
-	}
-
-
-	private void populateTypeCameraListView() {
-	    List<TypeCamera> typeCameraList = TypeCameraDAO.getInstance().readAll();
-	    ObservableList<TypeCamera> cameraType = FXCollections.observableArrayList();
-	    for (TypeCamera camera : typeCameraList) {
-	    	cameraType.add(camera);
-	    }
-	    typeCameraListView.setItems(cameraType);
-	}
-	
-	private void populateServeurComboBox() {
-	    List<Serveur> serveurList = ServeurDAO.getInstance().readAll();
-	    ObservableList<String> serveurNoms = FXCollections.observableArrayList();
-	    for (Serveur serveur : serveurList) {
-	        serveurNoms.add(serveur.getNom());
-	    }
-	    serveurComboBox.setItems(serveurNoms);
-	}
-	
+		
 	@FXML
 	private void handleAddCameraAction(ActionEvent event) {
 	    String nom = nomCamera.getText();
