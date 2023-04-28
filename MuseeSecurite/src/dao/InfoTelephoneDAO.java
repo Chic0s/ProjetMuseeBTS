@@ -87,11 +87,11 @@ public class InfoTelephoneDAO extends DAO<InfoTelephone>{
 		int id = elem.getId();
 
 		try {
-			String requete = "UPDATE "+TABLE+" SET nom = ?, num = ? WHERE "+CLE_PRIMAIRE+" = ?";
+			String requete = "UPDATE "+TABLE+" SET nom = ?, numerotelephone = ? WHERE "+CLE_PRIMAIRE+" = ?";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 			pst.setString(1,nom) ; 
 			pst.setString(2,numerotelephone);
-			pst.setInt(4, id) ;
+			pst.setInt(3, id) ;
 			pst.executeUpdate() ;
 			data.put(id, elem);
 		} catch (SQLException e) {

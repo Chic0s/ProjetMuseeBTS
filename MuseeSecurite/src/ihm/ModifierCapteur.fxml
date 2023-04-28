@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ModifierCameraController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ModifierCapteurController">
    <children>
       <Text layoutX="130.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier">
          <font>
@@ -21,13 +21,13 @@
       <Text layoutX="15.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emplacement :" />
       <Text layoutX="21.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serveur :" />
       <Text layoutX="25.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat :" />
-      <TextField fx:id="nomCamera" layoutX="67.0" layoutY="71.0" />
-      <ComboBox fx:id="modeleCamera" layoutX="77.0" layoutY="113.0" prefWidth="150.0" />
-      <ComboBox fx:id="emplacementCamera" layoutX="99.0" layoutY="153.0" prefWidth="150.0" />
-      <ComboBox fx:id="serveurCamera" layoutX="77.0" layoutY="188.0" prefWidth="150.0" />
-      <CheckBox fx:id="etatCamera" layoutX="63.0" layoutY="229.0" mnemonicParsing="false" />
-      <Button fx:id="enregistrerCamera" layoutX="137.0" layoutY="311.0" mnemonicParsing="false" onAction="#handleUpdateCameraAction" text="Enregistrer" />
+      <TextField fx:id="nomCapteur" layoutX="67.0" layoutY="71.0" />
+      <ComboBox fx:id="modeleCapteur" layoutX="77.0" layoutY="113.0" prefWidth="150.0" />
+      <ComboBox fx:id="emplacementCapteur" layoutX="99.0" layoutY="153.0" prefWidth="150.0" />
+      <ComboBox fx:id="serveurCapteur" layoutX="77.0" layoutY="188.0" prefWidth="150.0" />
+      <CheckBox fx:id="etatCapteur" layoutX="63.0" layoutY="229.0" mnemonicParsing="false" />
+      <Button fx:id="enregistrerCapteur" layoutX="137.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleUpdateCameraAction" text="Enregistrer" />
       <Text layoutX="27.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" />
-      <Label fx:id="idCamera" layoutX="57.0" layoutY="264.0" />
+      <Label fx:id="idCapteur" layoutX="57.0" layoutY="264.0" />
    </children>
 </Pane>

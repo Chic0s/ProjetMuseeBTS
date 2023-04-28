@@ -2,6 +2,7 @@ package controleur;
 
 import java.util.List;
 
+import dao.ElementDeSecuriteDAO;
 import dao.SalleDAO;
 import dao.ServeurDAO;
 import dao.TypeCameraDAO;
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import securite.ElementDeSecurite;
 import securite.Salle;
 import securite.Serveur;
 import securite.TypeCamera;
@@ -78,5 +80,22 @@ public class ComboBoxEdit {
 	    }
 	    box.setItems(cameraModele);
 	}
+	 
+	 public void modeleCapteurComboBox(ComboBox<String> box) {
+		    List<TypeCapteur> capteurlist = TypeCapteurDAO.getInstance().readAll();
+		    ObservableList<String> capteurModele = FXCollections.observableArrayList();
+		    for (TypeCapteur capteur : capteurlist) {
+		    	capteurModele.add(capteur.getType());
+		    }
+		    box.setItems(capteurModele);
+		}
+	 public void ElementDeSecuriteComboBox(ComboBox<ElementDeSecurite> box) {
+		    List<ElementDeSecurite> elemlist = ElementDeSecuriteDAO.getInstance().readAll();
+		    ObservableList<ElementDeSecurite> elemNom = FXCollections.observableArrayList();
+		    for (ElementDeSecurite elem : elemlist) {
+		    	elemNom.add(elem);
+		    }
+		    box.setItems(elemNom);
+		}
 			
 }

@@ -95,7 +95,7 @@ public class ElementDeSecuriteDAO extends DAO<ElementDeSecurite>{
 		int id = elem.getId();
 
 		try {
-			String requete = "UPDATE "+TABLE+" SET nom = ?, mod = ?, emp = ? WHERE "+CLE_PRIMAIRE+" = ?";
+			String requete = "UPDATE "+TABLE+" SET nom = ?, modele = ?, emplacement = ?, serveur = ?, etat = ? WHERE "+CLE_PRIMAIRE+" = ?";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 			pst.setString(1,nom) ; 
 			pst.setString(2,modele) ; 

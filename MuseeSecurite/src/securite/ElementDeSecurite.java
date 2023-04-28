@@ -26,6 +26,7 @@ public class ElementDeSecurite {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -46,8 +47,7 @@ public class ElementDeSecurite {
 	}
 	@Override
 	public String toString() {
-		return "ElementDeSecurite [id=" + id + ", nom=" + nom + ", modele=" + modele + ", emplacement=" + emplacement
-				+ ", serveur=" + serveur + ", etat=" + etat + "]";
+		return nom;
 	}
 
 
