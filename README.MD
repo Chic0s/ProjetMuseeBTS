@@ -11,4 +11,4 @@ De plus, nous avons choisi le framework JavaFX et scene builder pour la vue.
 Les logiciels que nous utilisons sont : SQL Server Management pour les bases de données.
 Nous devons mettre en place des données externes pour émuler les capteurs et les données transmisses par celle-ci.
 
-
+Par ailleurs, l'Annexe 8, qui concerne l'environnement technologique, est intégrée dans les fichiers hébergés sur Github.
