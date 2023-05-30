@@ -12,3 +12,13 @@ Les logiciels que nous utilisons sont : SQL Server Management pour les bases de 
 Nous devons mettre en place des données externes pour émuler les capteurs et les données transmisses par celle-ci.
 
 Par ailleurs, l'Annexe 8, qui concerne l'environnement technologique, est intégrée dans les fichiers hébergés sur Github.
+
+
+Diagramme de classe : 
+
+![image](https://github.com/Chic0s/ProjetMuseeBTS/assets/96829109/033b1759-26a8-4bf7-a641-468dea788edc)
+
+
+Diagramme de cas d'utilisation : 
+
+![image](https://github.com/Chic0s/ProjetMuseeBTS/assets/96829109/23937665-8c30-4143-a430-a093d54afbab)
