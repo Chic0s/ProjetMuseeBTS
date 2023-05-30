@@ -65,7 +65,8 @@ public class ModifierCameraController {
 
 	@FXML
 	private void handleUpdateCameraAction(ActionEvent event) {
-		HandleActionController.getInstance().UpdateElementDeSecurite(nomCamera, emplacementCamera, modeleCamera, serveurCamera, etatCamera, nomCamera, enregistrerCamera);
+		HandleActionController.getInstance().UpdateElementDeSecurite(nomCamera, emplacementCamera, modeleCamera, serveurCamera, etatCamera,idCamera, enregistrerCamera);
+		
 	}
 	
 	

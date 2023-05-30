@@ -213,7 +213,7 @@ public class HandleActionController {
 	    }
 	}
 	
-	public void UpdateElementDeSecurite(TextField nomElementDeSecurite, ComboBox<String> emplacementElementDeSecurite, ComboBox<String> modeleElementDeSecurite, ComboBox<String> serveurElementDeSecurite,CheckBox etatElementDeSecurite, TextField idElementDeSecurite, Button enregistrerElementDeSecurite) {
+	public void UpdateElementDeSecurite(TextField nomElementDeSecurite, ComboBox<String> emplacementElementDeSecurite, ComboBox<String> modeleElementDeSecurite, ComboBox<String> serveurElementDeSecurite,CheckBox etatElementDeSecurite, Label idElementDeSecurite, Button enregistrerElementDeSecurite) {
 	    String nom = nomElementDeSecurite.getText();
 	    String emplacement = emplacementElementDeSecurite.getValue();
 	    String modele = modeleElementDeSecurite.getValue();
