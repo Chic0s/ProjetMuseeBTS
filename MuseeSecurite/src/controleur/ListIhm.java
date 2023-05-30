@@ -2,12 +2,12 @@ package controleur;
 
 
 public enum ListIhm {
-	IHMTELEPHONEAJOUTER("../ihm/AjouterTelephone.fxml"),
-	IHMTELEPHONEMODIFIER("../ihm/ModifierTelephone.fxml"),
-	IHMCAMERAAJOUTER("../ihm/AjouterCamera.fxml"),
-	IHMCAMERAMODIFIER("../ihm/ModifierCamera.fxml"),
-	IHMCAPTEURAJOUTER("../ihm/AjouterCapteur.fxml"),
-	IHMCAPTEURMODIFIER("../ihm/ModifierCapteur.fxml");
+	IHMTELEPHONEAJOUTER("/ihm/AjouterTelephone.fxml"),
+	IHMTELEPHONEMODIFIER("/ihm/ModifierTelephone.fxml"),
+	IHMCAMERAAJOUTER("/ihm/AjouterCamera.fxml"),
+	IHMCAMERAMODIFIER("/ihm/ModifierCamera.fxml"),
+	IHMCAPTEURAJOUTER("/ihm/AjouterCapteur.fxml"),
+	IHMCAPTEURMODIFIER("/ihm/ModifierCapteur.fxml");
 	
 	
 	private String url;

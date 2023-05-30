@@ -1,5 +1,7 @@
 package controleur;
 
+import java.io.File;
+
 import dao.Connexion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,6 +19,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import securite.ElementDeSecurite;
@@ -113,10 +117,10 @@ public class PlanController {
     //SAUVEGARDE ETAGE
     
     @FXML
-    private Button saveButton;
+    private MenuItem sauvegarderPlanButton;
 
     @FXML
-    private Button loadButton;
+    private MenuItem ouvrirPlanButton;
     
         
     @FXML
@@ -220,7 +224,40 @@ public class PlanController {
             } 
         });
 
+        //Fichier JSON 
+        
+        sauvegarderPlanButton.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Sélectionner un emplacement pour la sauvegarde");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier JSON (*.json)", "*.json"));
 
+            // Ouvrir le menu de sauvegarde et attendre que l'utilisateur effectue une sélection
+            File selectedFile = fileChooser.showSaveDialog(etage.getScene().getWindow());
+
+            if (selectedFile != null) {
+                String filePath = selectedFile.getParent(); // Récupérer le chemin du dossier
+                String fileName = selectedFile.getName(); // Récupérer le nom du fichier
+
+                PlanItems.getInstance().savePlanData(filePath, fileName, etage);
+            }
+        });
+        ouvrirPlanButton.setOnAction(event -> {
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Ouvrir le plan");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Fichiers JSON", "*.json"));
+
+            // Afficher la boîte de dialogue d'ouverture de fichier
+            File selectedFile = fileChooser.showOpenDialog(etage.getScene().getWindow());
+
+
+            if (selectedFile != null) {
+
+            	PlanItems.getInstance().ouvrirPlan(selectedFile, etage);
+            }
+        });
+        
     }
        
     public void initializeZoneTableView(ElementDeControle type) {
@@ -324,4 +361,7 @@ public class PlanController {
     	HandleActionController.getInstance().DeleteElemInfoTelephone(tableViewTelephone);
     }
    
+    
+
+    
 }

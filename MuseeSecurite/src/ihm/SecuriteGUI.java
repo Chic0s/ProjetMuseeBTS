@@ -14,7 +14,7 @@ public class SecuriteGUI extends Application {
 	        Parent root = FXMLLoader.load(getClass().getResource("plan.fxml"));
 
 	        // Création d'une scène à partir de l'interface graphique
-	        Scene scene = new Scene(root, 600, 400);
+	        Scene scene = new Scene(root, 650, 450);
 
 	        // Ajout de la scène à la fenêtre et affichage de la fenêtre
 	        primaryStage.setTitle("Securité du Musée");
