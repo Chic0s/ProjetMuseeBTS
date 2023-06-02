@@ -71,9 +71,9 @@ En cas d'erreur TCP/IP, il est nécessaire de ce rendre dans le logiciel SQL Ser
 
 Dans un premier temps, il est important d'intégrer les différentes librairies dans le projet. 
 A noté, il est nécessaire d'utiliser un argument pour lancer le projet avec JavaFX. 
-
+```
 VM argument : --module-path "lien vers le dossier lib de la librairie JavaFX -> javafx-sdk-19.0.2.1\lib" --add-modules=javafx.controls,javafx.fxml
-
+```
 ## Utilisation de L'éxécutable
 
 Un dossier " executable " est présent dans le répo Github. Celui-ci possède une version runable du projet en .jar. Pour faciliter son utilisation, il est obligatoire de le lancer via le CMD et de mettre à jour le path du JavaFX. 
