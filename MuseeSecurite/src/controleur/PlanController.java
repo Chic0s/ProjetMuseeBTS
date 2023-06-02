@@ -122,6 +122,9 @@ public class PlanController {
     @FXML
     private MenuItem ouvrirPlanButton;
     
+    @FXML 
+    private MenuItem fermerPlanButton;
+    
         
     @FXML
     public void initialize() {
@@ -132,8 +135,9 @@ public class PlanController {
     	this.initializeZoneTableView(ElementDeControle.CAMERA);
     	this.initializeZoneTableView(ElementDeControle.TELEPHONE);
         
-        ComboBoxEdit.getInstance().ElementDeSecuriteComboBox(ListElem);
-        
+    	ComboBoxEdit.getInstance().ElementDeSecuriteComboBox(ListElem);
+    	
+    	ListElem.setOnMouseClicked(event -> ComboBoxEdit.getInstance().ElementDeSecuriteComboBox(ListElem));
         etage.setOnDragOver(event -> handleDragOver(event));
         etage.setOnDragDropped(event -> handleDragDropped(event));
         addDetectorButton.setOnAction(e -> {PlanItems.getInstance().addItems("Detecteur",etage,Color.BLUE);});
@@ -145,6 +149,7 @@ public class PlanController {
         removeEtage.setOnAction(e -> {
         		PlanItems.getInstance().RemoveTabWithImage(etage);
             });
+        
         
         tableViewCamera.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -222,6 +227,7 @@ public class PlanController {
                 	PlanItems.getInstance().addItems(nom,etage,Color.GREEN);
                 }
             } 
+            
         });
 
         //Fichier JSON 
@@ -256,6 +262,13 @@ public class PlanController {
 
             	PlanItems.getInstance().ouvrirPlan(selectedFile, etage);
             }
+        });
+        
+        fermerPlanButton.setOnAction(event -> {
+        	boolean response = PlanItems.getInstance().fermerPlan();
+        	if(response == true) {
+        		etage.getTabs().clear();
+        	}
         });
         
     }
@@ -329,6 +342,7 @@ public class PlanController {
     	HandleActionController.getInstance().ModifierElemDeSecurite(tableViewCamera,ElementDeControle.CAMERA.getType());
      	this.initializeZoneTableView(ElementDeControle.CAMERA);
 
+
     }
     
     @FXML
@@ -354,14 +368,12 @@ public class PlanController {
     @FXML
     private void handleDeleteActionCapteur(ActionEvent event) {
     	HandleActionController.getInstance().DeleteElem(tableViewCapteur);
+    	
     }
     
     @FXML
     private void handleDeleteActionInfoTelephone(ActionEvent event) {
     	HandleActionController.getInstance().DeleteElemInfoTelephone(tableViewTelephone);
     }
-   
-    
-
-    
+       
 }

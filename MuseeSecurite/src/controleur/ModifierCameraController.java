@@ -33,7 +33,6 @@ public class ModifierCameraController {
 	@FXML
 	private Button enregistrerCamera;
 	
-	
 	@FXML
 	public void initialize() {
 		ComboBoxEdit.getInstance().modeleCameraComboBox(modeleCamera);
@@ -65,10 +64,7 @@ public class ModifierCameraController {
 
 	@FXML
 	private void handleUpdateCameraAction(ActionEvent event) {
-		HandleActionController.getInstance().UpdateElementDeSecurite(nomCamera, emplacementCamera, modeleCamera, serveurCamera, etatCamera,idCamera, enregistrerCamera);
-		
+		HandleActionController.getInstance().UpdateElementDeSecurite(nomCamera, emplacementCamera, modeleCamera, serveurCamera, etatCamera,idCamera, enregistrerCamera);	
 	}
 	
-	
-
 }

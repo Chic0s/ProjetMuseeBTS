@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Optional;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,6 +14,8 @@ import org.json.JSONObject;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
@@ -281,6 +284,26 @@ public class PlanItems {
 	    } catch (IOException | JSONException e) {
 	        e.printStackTrace();
 	    }
+	}
+
+	public boolean fermerPlan() {
+		boolean rep = false;
+	    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+	    alert.setTitle("Confirmation");
+	    alert.setHeaderText("Fermer le plan actuel");
+	    alert.setContentText("Avez-vous bien sauvegardé avant de fermer le plan actuel ?");
+
+	    ButtonType buttonTypeOui = new ButtonType("Oui");
+	    ButtonType buttonTypeNon = new ButtonType("Non");
+
+	    alert.getButtonTypes().setAll(buttonTypeOui, buttonTypeNon);
+
+	    Optional<ButtonType> result = alert.showAndWait();
+	    if (result.isPresent() && result.get() == buttonTypeOui) {
+	    	rep = true;
+	        //etage.getTabs().clear();
+	    }
+		return rep;
 	}
 
 	

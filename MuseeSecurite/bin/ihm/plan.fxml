@@ -173,14 +173,9 @@
         <menus>
           <Menu mnemonicParsing="false" text="Fichier">
             <items>
-              <MenuItem mnemonicParsing="false" text="Fermer le plan" />
+              <MenuItem fx:id="fermerPlanButton" mnemonicParsing="false" text="Fermer le plan" />
                   <MenuItem fx:id="ouvrirPlanButton" mnemonicParsing="false" text="Ouvrir un plan" />
                   <MenuItem fx:id="sauvegarderPlanButton" mnemonicParsing="false" text="Sauvegarder le plan" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Aide">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>

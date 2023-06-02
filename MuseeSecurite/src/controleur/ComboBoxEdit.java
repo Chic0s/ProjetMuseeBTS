@@ -91,11 +91,14 @@ public class ComboBoxEdit {
 		}
 	 public void ElementDeSecuriteComboBox(ComboBox<ElementDeSecurite> box) {
 		    List<ElementDeSecurite> elemlist = ElementDeSecuriteDAO.getInstance().readAll();
-		    ObservableList<ElementDeSecurite> elemNom = FXCollections.observableArrayList();
-		    for (ElementDeSecurite elem : elemlist) {
-		    	elemNom.add(elem);
+		    if (!elemlist.isEmpty()) {
+		        ObservableList<ElementDeSecurite> elemNom = FXCollections.observableArrayList();
+		        for (ElementDeSecurite elem : elemlist) {
+		            elemNom.add(elem);
+		        }
+		        box.setItems(elemNom);
 		    }
-		    box.setItems(elemNom);
 		}
+
 			
 }

@@ -61,7 +61,7 @@ public class AjouterCapteurController {
 	
 	@FXML
 	private void handleAddCameraAction(ActionEvent event) {
-	  HandleActionController.getInstance().handleAddElementDeSecuriteAction(nomCapteur, salleComboBox, nomCapteur, serveurComboBox, etatCapteur, enregistrerCapteur);
+	  HandleActionController.getInstance().handleAddElementDeSecuriteAction(nomCapteur, salleComboBox, typeCapteur, serveurComboBox, etatCapteur, enregistrerCapteur);
 	}
 	
 

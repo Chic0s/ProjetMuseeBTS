@@ -8,7 +8,7 @@ public class Cercle {
     private double layoutY;
     private double radius;
     private Color color;
-    private String name;
+    private static String name;
 
     // Constructeur
     public Cercle(double layoutX, double layoutY, double radius, Color color, String name) {
@@ -16,7 +16,7 @@ public class Cercle {
         this.layoutY = layoutY;
         this.radius = radius;
         this.color = color;
-        this.name = name;
+        Cercle.name = name;
     }
 
     // Getters et setters
@@ -57,8 +57,8 @@ public class Cercle {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static void setName(String Name) {
+        Name = name;
     }
     
     public Circle createCircle() {
