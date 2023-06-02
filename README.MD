@@ -14,6 +14,23 @@ En effet, la base de données est constituées de différents capteurs qui poss�
 
 ## Fonctionnalités
 
+###Comment Démarrer ? 
+
+Il nous faut une image (.png, .jpg,.jepg) et effectuer une action de drag & drop dans la zone blanche (ci-dessous). 
+
+![image](https://github.com/Chic0s/ProjetMuseeBTS/assets/96829109/0c0e25b9-3cd6-4d85-9204-1f939cfdc500)
+
+Vous pouvez dès à présent ajouter des capteurs et caméra à l'aide de la liste déroulante :
+
+![image](https://github.com/Chic0s/ProjetMuseeBTS/assets/96829109/062a3414-96d9-4a31-bc5a-b3c805720922)
+
+Il est possible d'en rajouter en créant des caméras et des capteurs dans les onglets respectifs Camera ou Capteurs. 
+
+Pour supprimer un cercle du plan, il suffit d'appuyer une fois sur le bouton supprimer pour activer le mode : ![image](https://github.com/Chic0s/ProjetMuseeBTS/assets/96829109/8d15dcaf-0921-44ae-bc42-896c1c090ea3)
+Puis de rappuyer dessus pour le désactiver.
+
+
+
 - Création de plusieurs étages
 
 - Création de Camera/Capteurs
@@ -21,6 +38,12 @@ En effet, la base de données est constituées de différents capteurs qui poss�
 - Déploiement de capteurs sur le plan pour connaitre leurs positions en cas d'Alertes
 
 - Création d'Alertes
+
+- Ajout de téléphone d'urgence
+
+- Fichier Json : demarcheasuivre.json pour ajouter ou modifier les consignes 
+
+- Menu : Fermer, ouvrir, sauvegarder le plan -> sous format JSON 
 
 
 ## Installation
