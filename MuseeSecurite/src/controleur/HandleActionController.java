@@ -191,7 +191,7 @@ public class HandleActionController {
 	    }
 	}
 	
-	public void handleAddElementDeSecuriteAction(TextField nomObjet, ComboBox<String> salleComboBox, TextField type, ComboBox<String> serveurComboBox, CheckBox etatObjet, Button enregistrer) {
+	public void handleAddElementDeSecuriteAction(TextField nomObjet, ComboBox<String> salleComboBox, Label type, ComboBox<String> serveurComboBox, CheckBox etatObjet, Button enregistrer) {
 	    String nom = nomObjet.getText();
 	    String emplacement = salleComboBox.getValue();
 	    String modele = type.getText();
