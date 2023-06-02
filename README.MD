@@ -100,7 +100,7 @@ VM argument : --module-path "lien vers le dossier lib de la librairie JavaFX -> 
 ```
 ## Utilisation de L'éxécutable
 
-Un dossier " executable " est présent dans le répo Github. Celui-ci possède une version runable du projet en .jar. Pour faciliter son utilisation, il est obligatoire de le lancer via le CMD et de mettre à jour le path du JavaFX. 
+Un zip " executableMusee.zip " est présent dans le répo Github. Celui-ci possède une version runable du projet en .jar. Pour faciliter son utilisation, il est obligatoire de le lancer via le CMD et de mettre à jour le path du JavaFX. 
 
 ```
 
