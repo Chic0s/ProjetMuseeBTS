@@ -14,9 +14,10 @@ En effet, la base de données est constituées de différents capteurs qui poss�
 
 ## Fonctionnalités
 
-###Comment Démarrer ? 
+### Comment Démarrer ? 
 
 Il nous faut une image (.png, .jpg,.jepg) et effectuer une action de drag & drop dans la zone blanche (ci-dessous). 
+Vous pouvez retrouver une image test dans le repo : Plan-Musee-Test.jpg
 
 ![image](https://github.com/Chic0s/ProjetMuseeBTS/assets/96829109/0c0e25b9-3cd6-4d85-9204-1f939cfdc500)
 
