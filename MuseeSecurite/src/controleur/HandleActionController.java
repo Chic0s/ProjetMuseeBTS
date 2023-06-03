@@ -1,6 +1,7 @@
 package controleur;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import dao.ActionDAO;
 import dao.AlertesDAO;
@@ -299,6 +300,29 @@ public class HandleActionController {
 
 	        ElementDeSecuriteDAO.getInstance().update(existingElement);
 	        Stage stage = (Stage) enregistrerElementDeSecurite.getScene().getWindow();
+	        stage.close();
+	    }
+	}
+	
+	public void handleAddAlerte(Label labelAlerteId, TextField nomAlerte, TextArea descriptionAlerte, ComboBox<ElementDeSecurite> comboBoxCapteur, ComboBox<Action> comboBoxAction, Button enregistrerAlerte) {
+	    String nom = nomAlerte.getText();
+	    String description = descriptionAlerte.getText();
+	    ElementDeSecurite capteur = comboBoxCapteur.getValue();
+	    Action action = comboBoxAction.getValue();
+	    int id = Integer.parseInt(labelAlerteId.getText());
+	    
+	    if (nom.isEmpty() || description.isEmpty() || capteur == null || action == null) {
+	        // Afficher une alerte si les champs ne sont pas remplis correctement
+	        Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Informations manquantes");
+	        alert.setHeaderText("Tous les champs doivent �tre remplis");
+	        alert.setContentText("Veuillez renseigner le nom, l'emplacement, le modele et l'�tat de l'Element de securite.");
+	        alert.showAndWait();
+	    } else {
+	    	long date = 1685807506397;
+	        Alertes newAlerte = new Alertes(0, , modele, emplacement, serveur, etat);
+	        AlertesDAO.getInstance().create(newAlerte);
+	        Stage stage = (Stage) enregistrer.getScene().getWindow();
 	        stage.close();
 	    }
 	}
