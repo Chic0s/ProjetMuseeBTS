@@ -11,8 +11,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -57,6 +55,12 @@
                                     <Text fill="#1bd0e8" layoutX="59.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Detecteur" />
                                     <Button fx:id="addDetectorButton" layoutX="-4.0" layoutY="158.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Detecteur" />
                                     <ComboBox fx:id="ListElem" layoutX="2.0" layoutY="126.0" prefWidth="150.0" />
+                                    <Text layoutX="58.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alertes">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Button fx:id="verifAlertes" layoutX="51.0" layoutY="308.0" mnemonicParsing="false" text="Verifier" />
                                  </children>
                               </AnchorPane>
                            </items>
@@ -111,37 +115,23 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.431438127090301" prefHeight="371.0" prefWidth="600.0">
-                           <items>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                 <children>
-                                    <TreeTableView layoutX="20.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0">
-                                       <columns>
-                                          <TreeTableColumn prefWidth="105.0" text="Nom" />
-                                          <TreeTableColumn prefWidth="94.0" text="Status" />
-                                       </columns>
-                                    </TreeTableView>
-                                    <Text layoutX="20.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                 <children>
-                                    <TreeTableView layoutX="25.0" layoutY="101.0" prefHeight="202.0" prefWidth="306.0">
-                                       <columns>
-                                          <TreeTableColumn prefWidth="75.0" text="Nom" />
-                                          <TreeTableColumn prefWidth="75.0" text="Type" />
-                                          <TreeTableColumn prefWidth="75.0" text="Action" />
-                                          <TreeTableColumn text="Status" />
-                                       </columns>
-                                    </TreeTableView>
-                                    <Button layoutX="48.0" layoutY="50.0" mnemonicParsing="false" text="Ajouter" />
-                                    <Button layoutX="118.0" layoutY="50.0" mnemonicParsing="false" text="Modifier" />
-                                    <Button layoutX="189.0" layoutY="50.0" mnemonicParsing="false" text="Supprimer" />
-                                    <Text layoutX="48.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capteurs" />
-                                 </children>
-                              </AnchorPane>
-                           </items>
-                        </SplitPane>
+                        <SplitPane prefHeight="371.0" prefWidth="600.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="ajouterAlertesCapteurs" layoutX="48.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleOpenAjouterAlertes" text="Ajouter" />
+                              <Button fx:id="modifierAlertesCapteurs" layoutX="118.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleModifierAlertes" text="Modifier" />
+                              <Button fx:id="supprimerAlertesCapteurs" layoutX="189.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleDeleteActionAlertes" text="Supprimer" />
+                              <Text layoutX="48.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alertes" />
+                              <TableView fx:id="alertesTab" layoutX="17.0" layoutY="96.0" prefHeight="262.0" prefWidth="574.0">
+                                <columns>
+                                  <TableColumn fx:id="alertesNom" prefWidth="75.0" text="Capteur" />
+                                  <TableColumn fx:id="alertesCondition" prefWidth="150.4000244140625" text="Condition" />
+                                    <TableColumn fx:id="alertesValeur" minWidth="0.0" prefWidth="120.0" text="Valeur" />
+                                    <TableColumn fx:id="alertesStatus" prefWidth="133.5999755859375" text="Status" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </content>

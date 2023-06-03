@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import securite.Alertes;
 import securite.ElementDeSecurite;
 import securite.InfoTelephone;
 
@@ -125,7 +126,34 @@ public class PlanController {
     @FXML 
     private MenuItem fermerPlanButton;
     
-        
+       
+    //ALERTES 
+    @FXML
+    private Button ajouterAlertesCapteurs;
+    @FXML
+    private Button modifierAlertesCapteurs;
+    @FXML
+    private Button supprimerAlertesCapteurs;
+    @FXML
+    private Button verifAlertes;
+    
+    //TABLEAU ALERTES
+    @FXML
+    private TableView<Alertes> alertesTab;
+
+    @FXML
+    private TableColumn<Alertes, String> alertesNom;
+
+    @FXML
+    private TableColumn<Alertes, String> alertesCondition;
+    
+    @FXML
+    private TableColumn<Alertes, String> alertesValeur;
+
+    @FXML
+    private TableColumn<Alertes, String> alertesStatus;
+    
+    
     @FXML
     public void initialize() {
    
@@ -134,6 +162,7 @@ public class PlanController {
     	this.initializeZoneTableView(ElementDeControle.CAPTEUR);
     	this.initializeZoneTableView(ElementDeControle.CAMERA);
     	this.initializeZoneTableView(ElementDeControle.TELEPHONE);
+    	this.initializeZoneTableView(ElementDeControle.ALERTES);
         
     	ComboBoxEdit.getInstance().ElementDeSecuriteComboBox(ListElem);
     	
@@ -142,6 +171,7 @@ public class PlanController {
         etage.setOnDragDropped(event -> handleDragDropped(event));
         addDetectorButton.setOnAction(e -> {PlanItems.getInstance().addItems("Detecteur",etage,Color.BLUE);});
         supprimerButton.setOnAction(event -> PlanItems.getInstance().toggleModeSupprimer()); 
+        verifAlertes.setOnAction(event -> AlertesController.getInstance().VerificationAlertes()); 
         
         InfotelephoneController.getInstance().updateTextFromFile("demarcheasuivre.json", demarcheText);
         
@@ -204,6 +234,26 @@ public class PlanController {
         	        ((ModifierTelephoneController) loader.getController()).openWindow(selectedItem);
         	        stage.showAndWait();
         	     	this.initializeZoneTableView(ElementDeControle.TELEPHONE);
+            	}catch(Exception e) {
+            		e.printStackTrace();
+            	}
+                          
+            }
+        });
+        
+        alertesTab.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+            	Alertes selectedItem = alertesTab.getSelectionModel().getSelectedItem();
+            	try {
+           	        FXMLLoader loader = new FXMLLoader(getClass().getResource(ListIhm.IHMALERTESMODIFIER.getUrl()));
+        	        Parent root = loader.load();
+        	        Stage stage = new Stage();
+        	        stage.initModality(Modality.APPLICATION_MODAL);
+        	        stage.setTitle("Modifier Alertes");
+        	        stage.setScene(new Scene(root));
+        	        ((ModifierAlertesController) loader.getController()).openWindow(selectedItem);
+        	        stage.showAndWait();
+        	     	this.initializeZoneTableView(ElementDeControle.ALERTES);
             	}catch(Exception e) {
             		e.printStackTrace();
             	}
@@ -286,11 +336,14 @@ public class PlanController {
         case TELEPHONE:
             TableViewController.getInstance().initializeZoneTableViewTelephone(tableViewTelephone, nomColumnTelephone, numeroColumnTelephone);
             break;
+        case ALERTES:
+            TableViewController.getInstance().initializeZoneTableViewAlertes(alertesTab, alertesNom, alertesCondition,alertesValeur,alertesStatus);
+            break;
         default:
             break;
     }
 }
-  
+ 
 
     private void handleDragOver(DragEvent event) {
         if (event.getGestureSource() != etage && event.getDragboard().hasFiles()) {
@@ -335,6 +388,12 @@ public class PlanController {
 	   	 HandleActionController.getInstance().AjouterElemTableau(ElementDeControle.TELEPHONE.getType());
 	     this.initializeZoneTableView(ElementDeControle.TELEPHONE);
     }
+    
+    @FXML
+    private void handleOpenAjouterAlertes(ActionEvent event) {
+	   	 HandleActionController.getInstance().AjouterElemTableau(ElementDeControle.ALERTES.getType());
+	     this.initializeZoneTableView(ElementDeControle.ALERTES);
+    }
 
     //BOUTON MODIFIER 
     @FXML
@@ -358,6 +417,12 @@ public class PlanController {
      	this.initializeZoneTableView(ElementDeControle.TELEPHONE);
     }
     
+    @FXML
+    private void handleModifierAlertes(ActionEvent event) {
+    	HandleActionController.getInstance().ModifierAlertes(alertesTab);
+     	this.initializeZoneTableView(ElementDeControle.ALERTES);
+    }
+    
     //SUPPRIMER LES ELEMENTS DU TABLEAU
     
     @FXML
@@ -371,6 +436,12 @@ public class PlanController {
     	
     }
     
+    @FXML
+    private void handleDeleteActionAlertes(ActionEvent event) {
+    	HandleActionController.getInstance().DeleteAlertes(alertesTab);
+    	
+    }
+        
     @FXML
     private void handleDeleteActionInfoTelephone(ActionEvent event) {
     	HandleActionController.getInstance().DeleteElemInfoTelephone(tableViewTelephone);

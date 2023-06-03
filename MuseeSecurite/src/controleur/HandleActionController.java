@@ -2,6 +2,7 @@ package controleur;
 
 import java.io.IOException;
 
+import dao.AlertesDAO;
 import dao.ElementDeSecuriteDAO;
 import dao.InfoTelephoneDAO;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import securite.Alertes;
 import securite.ElementDeSecurite;
 import securite.InfoTelephone;
 
@@ -49,6 +51,9 @@ public class HandleActionController {
         	}
         	else if(objet == ElementDeControle.TELEPHONE.getType()) {
                 fxmlLoader = new FXMLLoader(getClass().getResource(ListIhm.IHMTELEPHONEAJOUTER.getUrl()));
+        	}
+        	else if(objet == ElementDeControle.ALERTES.getType()) {
+                fxmlLoader = new FXMLLoader(getClass().getResource(ListIhm.IHMALERTESAJOUTER.getUrl()));
         	}
 
             Parent root = fxmlLoader.load();
@@ -108,6 +113,33 @@ public class HandleActionController {
         }
     }
     
+    public void ModifierAlertes(TableView<Alertes> view) {
+        Alertes selectedItem = view.getSelectionModel().getSelectedItem();
+        
+        if (selectedItem != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(ListIhm.IHMALERTESMODIFIER.getUrl()));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Modifier Alertes");
+                stage.setScene(new Scene(root));
+                ((ModifierAlertesController) loader.getController()).openWindow(selectedItem);
+                stage.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Afficher une alerte si aucune ligne n'est sélectionnée
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Aucune sélection");
+            alert.setHeaderText("Aucun élément sélectionné");
+            alert.setContentText("Veuillez sélectionner un élément dans le tableau.");
+            alert.showAndWait();
+        }
+    }
+
+    
      
     public void ModifierTelephone(TableView<InfoTelephone> view) {
     	InfoTelephone selectedItem = view.getSelectionModel().getSelectedItem();
@@ -154,7 +186,22 @@ public class HandleActionController {
             alert.showAndWait();
         }
     }
+    
+    public void DeleteAlertes(TableView<Alertes> view) {
+        Alertes selectedItem = view.getSelectionModel().getSelectedItem();
         
+        if (selectedItem != null) {
+        	view.getItems().remove(selectedItem);
+            AlertesDAO.getInstance().delete(selectedItem);
+        } else {
+            // Afficher une alerte si aucune ligne n'est sélectionnée
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Aucune sélection");
+            alert.setHeaderText("Aucun élément sélectionné");
+            alert.setContentText("Veuillez sélectionner un élément dans le tableau.");
+            alert.showAndWait();
+        }
+    }
     
     public void DeleteElemInfoTelephone(TableView<InfoTelephone> view) {
         InfoTelephone selectedItem = view.getSelectionModel().getSelectedItem();
@@ -203,11 +250,32 @@ public class HandleActionController {
 	        Alert alert = new Alert(AlertType.WARNING);
 	        alert.setTitle("Informations manquantes");
 	        alert.setHeaderText("Tous les champs doivent être remplis");
-	        alert.setContentText("Veuillez renseigner le nom, l'emplacement et le modèle du capteur.");
+	        alert.setContentText("Veuillez renseigner le nom, la condition, la valeur et l'etat.");
 	        alert.showAndWait();
 	    } else {
 	        ElementDeSecurite newElement = new ElementDeSecurite(0, nom, modele, emplacement, serveur, etat);
 	        ElementDeSecuriteDAO.getInstance().create(newElement);
+	        Stage stage = (Stage) enregistrer.getScene().getWindow();
+	        stage.close();
+	    }
+	}
+	
+	public void handleAddAlertes(Label nomObjet, ComboBox<String> conditionComboBox, TextField valeurAlertes,CheckBox etatObjet, Button enregistrer) {
+	    String nom = nomObjet.getText();
+	    String condition = conditionComboBox.getValue();
+	    String valeur = valeurAlertes.getText();
+	    Boolean etat = etatObjet.isSelected();
+	    
+	    if (nom.isEmpty() || condition == null || valeur == null || etat == null) {
+	        // Afficher une alerte si les champs ne sont pas remplis correctement
+	        Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Informations manquantes");
+	        alert.setHeaderText("Tous les champs doivent être remplis");
+	        alert.setContentText("Veuillez renseigner le nom, l'emplacement et le modèle du capteur.");
+	        alert.showAndWait();
+	    } else {
+	        Alertes newElement = new Alertes(0, nom, condition, valeur, etat);
+	        AlertesDAO.getInstance().create(newElement);
 	        Stage stage = (Stage) enregistrer.getScene().getWindow();
 	        stage.close();
 	    }
@@ -247,6 +315,36 @@ public class HandleActionController {
 	    }
 	}
    
+	public void UpdateAlertes(Label nomCapteur, ComboBox<String> conditionComboBox, TextField valeurAlertes, CheckBox etatAlertes, Label idAlertes, Button enregistrerAlertes) {
+	    String nom = nomCapteur.getText();
+	    String condition = conditionComboBox.getValue();
+	    String valeur = valeurAlertes.getText();
+	    Boolean etat = etatAlertes.isSelected();
+	    int id = Integer.parseInt(idAlertes.getText());
+	    
+	    if (nom.isEmpty() || condition == null || valeur.isEmpty() || etat == null) {
+	        // Afficher une alerte si les champs ne sont pas remplis correctement
+	        Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Informations manquantes");
+	        alert.setHeaderText("Tous les champs doivent être remplis");
+	        alert.setContentText("Veuillez renseigner le nom, la condition, la valeur et l'état de l'Alerte.");
+	        alert.showAndWait();
+	    } else {
+	        Alertes existingAlerte = AlertesDAO.getInstance().read(id);
+
+	        // Modifier les attributs de l'objet Alertes
+	        existingAlerte.setNom(nom);
+	        existingAlerte.setCondition(condition);
+	        existingAlerte.setValeur(valeur);
+	        existingAlerte.setEtat(etat);
+
+	        AlertesDAO.getInstance().update(existingAlerte);
+	        Stage stage = (Stage) enregistrerAlertes.getScene().getWindow();
+	        stage.close();
+	    }
+	}
+
+	
 	public void UpdateTelephoneInfo(TextField nomTelephone, TextField numeroTelephone, Label idTelephone, Button enregistrerTelephone) {
 	    String nom = nomTelephone.getText();
 	    String numero = numeroTelephone.getText();
@@ -273,4 +371,5 @@ public class HandleActionController {
 	        stage.close();
 	    }
 	}
+
 }

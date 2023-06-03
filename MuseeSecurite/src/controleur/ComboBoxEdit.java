@@ -1,6 +1,7 @@
 package controleur;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import dao.ElementDeSecuriteDAO;
 import dao.SalleDAO;
@@ -99,6 +100,23 @@ public class ComboBoxEdit {
 		        box.setItems(elemNom);
 		    }
 		}
+
+	 public void ElementDeSecuriteListView(ListView<ElementDeSecurite> box) {
+		    List<ElementDeSecurite> allElements = ElementDeSecuriteDAO.getInstance().readAll();
+		    String filter = ElementDeControle.CAPTEUR.getType();
+
+		    List<ElementDeSecurite> filteredElements = allElements.stream()
+		            .filter(element -> element.getModele().startsWith(filter))
+		            .collect(Collectors.toList());
+
+		    ObservableList<ElementDeSecurite> elemNom = FXCollections.observableArrayList(filteredElements);
+		    box.setItems(elemNom);
+		}
+
+	public void ConditionAlertes(ComboBox<String> conditionComboBox) {
+	    ObservableList<String> operators = FXCollections.observableArrayList("<", ">", "=", "!=");
+	    conditionComboBox.setItems(operators);
+	}
 
 			
 }
