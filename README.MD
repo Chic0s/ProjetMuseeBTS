@@ -30,6 +30,9 @@ Il est possible d'en rajouter en créant des caméras et des capteurs dans les o
 Pour supprimer un cercle du plan, il suffit d'appuyer une fois sur le bouton supprimer pour activer le mode : ![image](https://github.com/Chic0s/ProjetMuseeBTS/assets/96829109/8d15dcaf-0921-44ae-bc42-896c1c090ea3)
 Puis de rappuyer dessus pour le désactiver.
 
+Pour créer une alerte, rendez-vous dans l'onglet "Alertes". Pour définir l'alerte sélectionner un capteur, la condition et la valeur. Exemple : Si la valeur du capteur a une condition inférieure à une valeur. Alors lors de la vérification des capteurs une pop-up s'affichera. 
+
+![image](https://github.com/Chic0s/ProjetMuseeBTS/assets/96829109/c500ad0c-c2c6-4ac4-8372-757c240c27cd)
 
 
 - Création de plusieurs étages
