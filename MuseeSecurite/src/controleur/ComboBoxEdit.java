@@ -1,7 +1,9 @@
 package controleur;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import dao.ActionDAO;
 import dao.ElementDeSecuriteDAO;
 import dao.SalleDAO;
 import dao.ServeurDAO;
@@ -11,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import securite.Action;
 import securite.ElementDeSecurite;
 import securite.Salle;
 import securite.Serveur;
@@ -32,7 +35,7 @@ public class ComboBoxEdit {
     	super();
     }
 	
-	// Liste des Noms de salles dans un Menu Déroulant
+	// Liste des Noms de salles dans un Menu Dï¿½roulant
 	public void populateSalleComboBox(ComboBox<String> box) {
 	    List<Salle> sallelist = SalleDAO.getInstance().readAll();
 	    ObservableList<String> salleNoms = FXCollections.observableArrayList();
@@ -42,7 +45,7 @@ public class ComboBoxEdit {
 	    box.setItems(salleNoms);
 	}
 
-	//Liste des Objets caméra dans un Menu Déroulant
+	//Liste des Objets camï¿½ra dans un Menu Dï¿½roulant
 	public void populateTypeCameraListView(ListView<TypeCamera> box) {
 	    List<TypeCamera> typeCameraList = TypeCameraDAO.getInstance().readAll();
 	    ObservableList<TypeCamera> cameraType = FXCollections.observableArrayList();
@@ -52,7 +55,7 @@ public class ComboBoxEdit {
 	    box.setItems(cameraType);
 	}
 	
-	//Liste des noms serveur dans un Menu Déroulant
+	//Liste des noms serveur dans un Menu Dï¿½roulant
 	public void populateServeurComboBox(ComboBox<String> box) {
 	    List<Serveur> serveurList = ServeurDAO.getInstance().readAll();
 	    ObservableList<String> serveurNoms = FXCollections.observableArrayList();
@@ -62,7 +65,7 @@ public class ComboBoxEdit {
 	    box.setItems(serveurNoms);
 	}
 	
-	//Liste des Objets capteurs dans un Menu Déroulant
+	//Liste des Objets capteurs dans un Menu Dï¿½roulant
 	 void populateTypeCapteurListView(ListView<TypeCapteur> box) {
 	    List<TypeCapteur> typeCapteurList = TypeCapteurDAO.getInstance().readAll();
 	    ObservableList<TypeCapteur> capteurType = FXCollections.observableArrayList();
@@ -71,7 +74,7 @@ public class ComboBoxEdit {
 	    }
 	    box.setItems(capteurType);
 	}
-	//Liste des types camera dans un Menu Déroulant
+	//Liste des types camera dans un Menu Dï¿½roulant
 	 public void modeleCameraComboBox(ComboBox<String> box) {
 	    List<TypeCamera> cameralist = TypeCameraDAO.getInstance().readAll();
 	    ObservableList<String> cameraModele = FXCollections.observableArrayList();
@@ -96,6 +99,25 @@ public class ComboBoxEdit {
 		    	elemNom.add(elem);
 		    }
 		    box.setItems(elemNom);
+		}			
+	 public void ElementDeSecuriteCapteurAlertesComboBox(ComboBox<ElementDeSecurite> box) {
+		    List<ElementDeSecurite> elemlist = ElementDeSecuriteDAO.getInstance().readAll();
+	        List<ElementDeSecurite> filteredElements = elemlist.stream()
+	                .filter(element -> element.getModele().startsWith("Capteur"))
+	                .collect(Collectors.toList());
+	        
+		    ObservableList<ElementDeSecurite> elemNom = FXCollections.observableArrayList();
+		    for (ElementDeSecurite elem : filteredElements) {
+		    	elemNom.add(elem);
+		    }
+		    box.setItems(elemNom);
 		}
-			
+	 public void ElementDeSecuriteActionComboBox(ComboBox<Action> box) {
+		    List<Action> elemlist = ActionDAO.getInstance().readAll();	        
+		    ObservableList<Action> elemNom = FXCollections.observableArrayList();
+		    for (Action elem : elemlist) {
+		    	elemNom.add(elem);
+		    }
+		    box.setItems(elemNom);
+		}
 }

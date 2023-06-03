@@ -2,6 +2,8 @@ package controleur;
 
 import java.io.IOException;
 
+import dao.ActionDAO;
+import dao.AlertesDAO;
 import dao.ElementDeSecuriteDAO;
 import dao.InfoTelephoneDAO;
 import javafx.fxml.FXMLLoader;
@@ -14,9 +16,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import securite.Action;
+import securite.Alertes;
 import securite.ElementDeSecurite;
 import securite.InfoTelephone;
 
@@ -47,18 +52,22 @@ public class HandleActionController {
         	else if(objet == ElementDeControle.CAPTEUR.getType()) {
                 fxmlLoader = new FXMLLoader(getClass().getResource(ListIhm.IHMCAPTEURAJOUTER.getUrl()));
         	}
+        	else if(objet == ElementDeControle.ALERTE.getType()) {
+                // Charge le fichier FXML
+                fxmlLoader = new FXMLLoader(getClass().getResource(ListIhm.IHMALERTEAJOUTER.getUrl()));
+        	}
         	else if(objet == ElementDeControle.TELEPHONE.getType()) {
                 fxmlLoader = new FXMLLoader(getClass().getResource(ListIhm.IHMTELEPHONEAJOUTER.getUrl()));
         	}
 
             Parent root = fxmlLoader.load();
-            // Crée une nouvelle scène et une nouvelle fenêtre (stage)
+            // Crï¿½e une nouvelle scï¿½ne et une nouvelle fenï¿½tre (stage)
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Ajouter un élément");
+            stage.setTitle("Ajouter un ï¿½lï¿½ment");
 
-            // Affiche la nouvelle fenêtre
+            // Affiche la nouvelle fenï¿½tre
             stage.showAndWait();
 
         } catch (IOException e) {
@@ -81,10 +90,14 @@ public class HandleActionController {
                 	else if(objet == ElementDeControle.CAPTEUR.getType()) {
                         fxmlLoader = new FXMLLoader(getClass().getResource(ListIhm.IHMCAPTEURAJOUTER.getUrl()));
                 	}
+                	else if(objet == ElementDeControle.ALERTE.getType()) {
+                        // Charge le fichier FXML
+                        fxmlLoader = new FXMLLoader(getClass().getResource(ListIhm.IHMALERTEMODIFIER.getUrl()));
+                	}
         	        Parent root = fxmlLoader.load();
         	        Stage stage = new Stage();
         	        stage.initModality(Modality.APPLICATION_MODAL);
-        	        stage.setTitle("Modifier  un élément");
+        	        stage.setTitle("Modifier  un ï¿½lï¿½ment");
         	        stage.setScene(new Scene(root));
                 	if(objet == ElementDeControle.CAMERA.getType()) {
                         // Charge le fichier FXML
@@ -93,21 +106,50 @@ public class HandleActionController {
                 	else if(objet == ElementDeControle.CAPTEUR.getType()) {
                 		((ModifierCapteurController) fxmlLoader.getController()).openWindow(selectedItem);
                 	}
+                	/*
+                	else if(objet == ElementDeControle.ALERTE.getType()) {
+                		((ModifierAlerteController) fxmlLoader.getController()).openWindow(selectedItem);
+                	}*/
         	        stage.showAndWait();
         	        //this.initializeZoneTableViewCamera();
             	}catch(Exception e) {
             		e.printStackTrace();
             	}
        } else {
-            // Afficher une alerte si aucune ligne n'est sélectionnée
+            // Afficher une alerte si aucune ligne n'est sï¿½lectionnï¿½e
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucun élément sélectionné");
-            alert.setContentText("Veuillez sélectionner un élément dans le tableau.");
+            alert.setTitle("Aucune sï¿½lection");
+            alert.setHeaderText("Aucun ï¿½lï¿½ment sï¿½lectionnï¿½");
+            alert.setContentText("Veuillez sï¿½lectionner un ï¿½lï¿½ment dans le tableau.");
             alert.showAndWait();
         }
     }
     
+    public void ModifierAlerte(TableView<Alertes> view) {
+    	Alertes selectedItem = view.getSelectionModel().getSelectedItem();
+        
+        if (selectedItem != null) {
+        	try {
+       	        FXMLLoader loader = new FXMLLoader(getClass().getResource(ListIhm.IHMTELEPHONEMODIFIER.getUrl()));
+    	        Parent root = loader.load();
+    	        Stage stage = new Stage();
+    	        stage.initModality(Modality.APPLICATION_MODAL);
+    	        stage.setTitle("Modifier Alerte");
+    	        stage.setScene(new Scene(root));
+        		((ModifierAlerteController) loader.getController()).openWindow(selectedItem);
+    	        stage.showAndWait();
+        	}catch(Exception e) {
+        		e.printStackTrace();
+        	}
+       } else {
+            // Afficher une alerte si aucune ligne n'est sï¿½lectionnï¿½e
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Aucune sï¿½lection");
+            alert.setHeaderText("Aucun ï¿½lï¿½ment sï¿½lectionnï¿½");
+            alert.setContentText("Veuillez sï¿½lectionner un ï¿½lï¿½ment dans le tableau.");
+            alert.showAndWait();
+        }
+    }
      
     public void ModifierTelephone(TableView<InfoTelephone> view) {
     	InfoTelephone selectedItem = view.getSelectionModel().getSelectedItem();
@@ -126,11 +168,11 @@ public class HandleActionController {
         		e.printStackTrace();
         	}
        } else {
-            // Afficher une alerte si aucune ligne n'est sélectionnée
+            // Afficher une alerte si aucune ligne n'est sï¿½lectionnï¿½e
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucun élément sélectionné");
-            alert.setContentText("Veuillez sélectionner un élément dans le tableau.");
+            alert.setTitle("Aucune sï¿½lection");
+            alert.setHeaderText("Aucun ï¿½lï¿½ment sï¿½lectionnï¿½");
+            alert.setContentText("Veuillez sï¿½lectionner un ï¿½lï¿½ment dans le tableau.");
             alert.showAndWait();
         }
     }
@@ -146,15 +188,30 @@ public class HandleActionController {
         	view.getItems().remove(selectedItem);
             ElementDeSecuriteDAO.getInstance().delete(selectedItem);
         } else {
-            // Afficher une alerte si aucune ligne n'est sélectionnée
+            // Afficher une alerte si aucune ligne n'est sï¿½lectionnï¿½e
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucun élément sélectionné");
-            alert.setContentText("Veuillez sélectionner un élément dans le tableau.");
+            alert.setTitle("Aucune sï¿½lection");
+            alert.setHeaderText("Aucun ï¿½lï¿½ment sï¿½lectionnï¿½");
+            alert.setContentText("Veuillez sï¿½lectionner un ï¿½lï¿½ment dans le tableau.");
             alert.showAndWait();
         }
     }
+    
+    public void DeleteAlerte(TableView<Alertes> view) {
+        Alertes selectedItem = view.getSelectionModel().getSelectedItem();
         
+        if (selectedItem != null) {
+        	view.getItems().remove(selectedItem);
+            AlertesDAO.getInstance().delete(selectedItem);
+        } else {
+            // Afficher une alerte si aucune ligne n'est sï¿½lectionnï¿½e
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Aucune sï¿½lection");
+            alert.setHeaderText("Aucun ï¿½lï¿½ment sï¿½lectionnï¿½");
+            alert.setContentText("Veuillez sï¿½lectionner un ï¿½lï¿½ment dans le tableau.");
+            alert.showAndWait();
+        }
+    }
     
     public void DeleteElemInfoTelephone(TableView<InfoTelephone> view) {
         InfoTelephone selectedItem = view.getSelectionModel().getSelectedItem();
@@ -163,11 +220,11 @@ public class HandleActionController {
         	view.getItems().remove(selectedItem);
             InfoTelephoneDAO.getInstance().delete(selectedItem);
         } else {
-            // Afficher une alerte si aucune ligne n'est sélectionnée
+            // Afficher une alerte si aucune ligne n'est sï¿½lectionnï¿½e
             Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucun élément sélectionné");
-            alert.setContentText("Veuillez sélectionner un élément dans le tableau.");
+            alert.setTitle("Aucune sï¿½lection");
+            alert.setHeaderText("Aucun ï¿½lï¿½ment sï¿½lectionnï¿½");
+            alert.setContentText("Veuillez sï¿½lectionner un ï¿½lï¿½ment dans le tableau.");
             alert.showAndWait();
         }
     }
@@ -180,8 +237,8 @@ public class HandleActionController {
 	        // Afficher une alerte si les champs ne sont pas remplis correctement
 	        Alert alert = new Alert(AlertType.WARNING);
 	        alert.setTitle("Informations manquantes");
-	        alert.setHeaderText("Tous les champs doivent être remplis");
-	        alert.setContentText("Veuillez renseigner le nom, le numéro de téléphone.");
+	        alert.setHeaderText("Tous les champs doivent ï¿½tre remplis");
+	        alert.setContentText("Veuillez renseigner le nom, le numï¿½ro de tï¿½lï¿½phone.");
 	        alert.showAndWait();
 	    } else {
 	        InfoTelephone newElement = new InfoTelephone(0, nom, numero);
@@ -202,8 +259,8 @@ public class HandleActionController {
 	        // Afficher une alerte si les champs ne sont pas remplis correctement
 	        Alert alert = new Alert(AlertType.WARNING);
 	        alert.setTitle("Informations manquantes");
-	        alert.setHeaderText("Tous les champs doivent être remplis");
-	        alert.setContentText("Veuillez renseigner le nom, l'emplacement et le modèle du capteur.");
+	        alert.setHeaderText("Tous les champs doivent ï¿½tre remplis");
+	        alert.setContentText("Veuillez renseigner le nom, l'emplacement et le modï¿½le du capteur.");
 	        alert.showAndWait();
 	    } else {
 	        ElementDeSecurite newElement = new ElementDeSecurite(0, nom, modele, emplacement, serveur, etat);
@@ -225,8 +282,8 @@ public class HandleActionController {
 	        // Afficher une alerte si les champs ne sont pas remplis correctement
 	        Alert alert = new Alert(AlertType.WARNING);
 	        alert.setTitle("Informations manquantes");
-	        alert.setHeaderText("Tous les champs doivent être remplis");
-	        alert.setContentText("Veuillez renseigner le nom, l'emplacement, le modele et l'état de l'Element de securite.");
+	        alert.setHeaderText("Tous les champs doivent ï¿½tre remplis");
+	        alert.setContentText("Veuillez renseigner le nom, l'emplacement, le modele et l'ï¿½tat de l'Element de securite.");
 	        alert.showAndWait();
 	    } else {
 	    	
@@ -243,10 +300,40 @@ public class HandleActionController {
 	        ElementDeSecuriteDAO.getInstance().update(existingElement);
 	        Stage stage = (Stage) enregistrerElementDeSecurite.getScene().getWindow();
 	        stage.close();
-
 	    }
 	}
-   
+	
+	public void UpdateAlerte(Label labelAlerteId, TextField nomAlerte, TextArea descriptionAlerte, ComboBox<ElementDeSecurite> comboBoxCapteur, ComboBox<Action> comboBoxAction, Button enregistrerAlerte) {
+	    String nom = nomAlerte.getText();
+	    String description = descriptionAlerte.getText();
+	    ElementDeSecurite capteur = comboBoxCapteur.getValue();
+	    Action action = comboBoxAction.getValue();
+	    int id = Integer.parseInt(labelAlerteId.getText());
+	    
+	    if (nom.isEmpty() || description.isEmpty() || capteur == null || action == null) {
+	        // Afficher une alerte si les champs ne sont pas remplis correctement
+	        Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Informations manquantes");
+	        alert.setHeaderText("Tous les champs doivent ï¿½tre remplis");
+	        alert.setContentText("Veuillez renseigner le nom, l'emplacement, le modele et l'ï¿½tat de l'Element de securite.");
+	        alert.showAndWait();
+	    } else {
+	    	
+	        Alertes existingElement = AlertesDAO.getInstance().read(id);
+	        Action existingAction = ActionDAO.getInstance().read(id);
+
+	        // Modifier les attributs de l'objet ElementDeSecurite
+	        existingElement.setNom(nom);
+	        existingElement.setDescription(description);
+	        existingAction.setCapteur(capteur);
+	        existingElement.setAction(action);	    	
+
+	        AlertesDAO.getInstance().update(existingElement);
+	        Stage stage = (Stage) enregistrerAlerte.getScene().getWindow();
+	        stage.close();
+	    }
+	}
+	
 	public void UpdateTelephoneInfo(TextField nomTelephone, TextField numeroTelephone, Label idTelephone, Button enregistrerTelephone) {
 	    String nom = nomTelephone.getText();
 	    String numero = numeroTelephone.getText();
@@ -256,8 +343,8 @@ public class HandleActionController {
 	        // Afficher une alerte si les champs ne sont pas remplis correctement
 	        Alert alert = new Alert(AlertType.WARNING);
 	        alert.setTitle("Informations manquantes");
-	        alert.setHeaderText("Tous les champs doivent être remplis");
-	        alert.setContentText("Veuillez renseigner le nom et le numéro de téléphone.");
+	        alert.setHeaderText("Tous les champs doivent ï¿½tre remplis");
+	        alert.setContentText("Veuillez renseigner le nom et le numï¿½ro de tï¿½lï¿½phone.");
 	        alert.showAndWait();
 	    } else {
 	    	

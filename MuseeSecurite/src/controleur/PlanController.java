@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import securite.Alertes;
 import securite.ElementDeSecurite;
 import securite.InfoTelephone;
 
@@ -74,6 +75,27 @@ public class PlanController {
     @FXML 
     private TableColumn<ElementDeSecurite, String> etatColumnCapteur;
     
+    //TABLEAUX ALERTE
+    @FXML
+    private TableView<ElementDeSecurite> tableViewCamerasAlertes;
+    
+    @FXML
+    private TableColumn<ElementDeSecurite, String> tableColumnCameraNom;
+    
+    @FXML
+    private TableColumn<ElementDeSecurite, String> tableColumnCameraStatus;
+    
+    @FXML
+    private TableView<Alertes> tableViewAlertes;
+    
+    @FXML
+    private TableColumn<Alertes, String> tableColumnAlertesNom;
+    
+    @FXML
+    private TableColumn<Alertes, String> tableColumnAlertesAction;
+    
+    @FXML
+    private TableColumn<Alertes, String> tableColumnAlertesStatus;
     
 	// TABLEAU TELEPHONE
     @FXML
@@ -130,6 +152,8 @@ public class PlanController {
     	
     	this.initializeZoneTableView(ElementDeControle.CAPTEUR);
     	this.initializeZoneTableView(ElementDeControle.CAMERA);
+    	this.initializeZoneTableView(ElementDeControle.CAMERAALERTE);
+    	this.initializeZoneTableView(ElementDeControle.ALERTE);
     	this.initializeZoneTableView(ElementDeControle.TELEPHONE);
         
         ComboBoxEdit.getInstance().ElementDeSecuriteComboBox(ListElem);
@@ -170,7 +194,7 @@ public class PlanController {
             if (event.getClickCount() == 2) {
             	ElementDeSecurite selectedItem = tableViewCapteur.getSelectionModel().getSelectedItem();
             	try {
-           	        FXMLLoader loader = new FXMLLoader(getClass().getResource(ListIhm.IHMCAPTEURMODIFIER.getUrl()));
+           	        FXMLLoader loader = new FXMLLoader(getClass().getResource(ListIhm.IHMALERTEMODIFIER.getUrl()));
         	        Parent root = loader.load();
         	        Stage stage = new Stage();
         	        stage.initModality(Modality.APPLICATION_MODAL);
@@ -179,6 +203,26 @@ public class PlanController {
          	        ((ModifierCapteurController) loader.getController()).openWindow(selectedItem);
         	        stage.showAndWait();
         	     	this.initializeZoneTableView(ElementDeControle.CAPTEUR);
+            	}catch(Exception e) {
+            		e.printStackTrace();
+            	}
+                          
+            }
+        });
+        
+        tableViewAlertes.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+            	Alertes selectedItem = tableViewAlertes.getSelectionModel().getSelectedItem();
+            	try {
+           	        FXMLLoader loader = new FXMLLoader(getClass().getResource(ListIhm.IHMCAPTEURMODIFIER.getUrl()));
+        	        Parent root = loader.load();
+        	        Stage stage = new Stage();
+        	        stage.initModality(Modality.APPLICATION_MODAL);
+        	        stage.setTitle("Modifier Alerte");
+        	        stage.setScene(new Scene(root));
+         	        ((ModifierAlerteController) loader.getController()).openWindow(selectedItem);
+        	        stage.showAndWait();
+        	     	this.initializeZoneTableView(ElementDeControle.ALERTE);
             	}catch(Exception e) {
             		e.printStackTrace();
             	}
@@ -207,7 +251,7 @@ public class PlanController {
         });
                
         
-        // Écouteur pour la sélection d'un objet dans la ComboBox
+        // ï¿½couteur pour la sï¿½lection d'un objet dans la ComboBox
         ListElem.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue instanceof ElementDeSecurite) {
             	ElementDeSecurite elem = (ElementDeSecurite) newValue;
@@ -228,15 +272,15 @@ public class PlanController {
         
         sauvegarderPlanButton.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Sélectionner un emplacement pour la sauvegarde");
+            fileChooser.setTitle("Sï¿½lectionner un emplacement pour la sauvegarde");
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier JSON (*.json)", "*.json"));
 
-            // Ouvrir le menu de sauvegarde et attendre que l'utilisateur effectue une sélection
+            // Ouvrir le menu de sauvegarde et attendre que l'utilisateur effectue une sï¿½lection
             File selectedFile = fileChooser.showSaveDialog(etage.getScene().getWindow());
 
             if (selectedFile != null) {
-                String filePath = selectedFile.getParent(); // Récupérer le chemin du dossier
-                String fileName = selectedFile.getName(); // Récupérer le nom du fichier
+                String filePath = selectedFile.getParent(); // Rï¿½cupï¿½rer le chemin du dossier
+                String fileName = selectedFile.getName(); // Rï¿½cupï¿½rer le nom du fichier
 
                 PlanItems.getInstance().savePlanData(filePath, fileName, etage);
             }
@@ -248,7 +292,7 @@ public class PlanController {
             fileChooser.getExtensionFilters().add(
                     new FileChooser.ExtensionFilter("Fichiers JSON", "*.json"));
 
-            // Afficher la boîte de dialogue d'ouverture de fichier
+            // Afficher la boï¿½te de dialogue d'ouverture de fichier
             File selectedFile = fileChooser.showOpenDialog(etage.getScene().getWindow());
 
 
@@ -269,6 +313,12 @@ public class PlanController {
         case CAMERA:
             TableViewController.getInstance().initializeZoneTableViewElementDeSecurite(ElementDeControle.CAMERA.getType(),tableViewCamera,idColumnCamera,nomColumnCamera,
             		modeleColumnCamera,emplacementColumnCamera,serveurColumnCamera,etatColumnCamera);
+            break;
+        case CAMERAALERTE:
+            TableViewController.getInstance().initializeZoneTableViewCameraAlertes(ElementDeControle.CAMERA.getType(),tableViewCamerasAlertes,tableColumnCameraNom,tableColumnCameraStatus);
+            break;
+        case ALERTE:
+            TableViewController.getInstance().initializeZoneTableViewAlerte(tableViewAlertes,tableColumnAlertesNom,tableColumnAlertesAction, tableColumnAlertesStatus);
             break;
         case TELEPHONE:
             TableViewController.getInstance().initializeZoneTableViewTelephone(tableViewTelephone, nomColumnTelephone, numeroColumnTelephone);
@@ -318,6 +368,12 @@ public class PlanController {
     }
     
     @FXML
+    private void handleOpenAjouterAlerte(ActionEvent event) {
+	   	 HandleActionController.getInstance().AjouterElemTableau(ElementDeControle.ALERTE.getType());
+	     this.initializeZoneTableView(ElementDeControle.ALERTE);
+    }
+    
+    @FXML
     private void handleOpenAjouterTelephone(ActionEvent event) {
 	   	 HandleActionController.getInstance().AjouterElemTableau(ElementDeControle.TELEPHONE.getType());
 	     this.initializeZoneTableView(ElementDeControle.TELEPHONE);
@@ -337,6 +393,11 @@ public class PlanController {
      	this.initializeZoneTableView(ElementDeControle.CAPTEUR);
     }
     
+    @FXML
+    private void handleModifierAlerte(ActionEvent event) {
+    	HandleActionController.getInstance().ModifierAlerte(tableViewAlertes);
+     	this.initializeZoneTableView(ElementDeControle.ALERTE);
+    }
     
     @FXML
     private void handleModifierTelephone(ActionEvent event) {
@@ -354,6 +415,11 @@ public class PlanController {
     @FXML
     private void handleDeleteActionCapteur(ActionEvent event) {
     	HandleActionController.getInstance().DeleteElem(tableViewCapteur);
+    }
+    
+    @FXML
+    private void handleDeleteActionAlerte(ActionEvent event) {
+    	HandleActionController.getInstance().DeleteAlerte(tableViewAlertes);
     }
     
     @FXML

@@ -107,7 +107,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Alertes">
+			<Tab text="Alertes">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -115,29 +115,28 @@
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TreeTableView layoutX="20.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0">
+                                    <TableView fx:id="tableViewCamerasAlertes" layoutX="20.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0">
                                        <columns>
-                                          <TreeTableColumn prefWidth="105.0" text="Nom" />
-                                          <TreeTableColumn prefWidth="94.0" text="Status" />
+                                          <TableColumn fx:id="tableColumnCameraNom" prefWidth="94.0" text="Nom" />
+                                          <TableColumn fx:id="tableColumnCameraStatus" prefWidth="105.0" text="Status" />
                                        </columns>
-                                    </TreeTableView>
-                                    <Text layoutX="20.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera" />
+                                    </TableView>
+                                    <Text layoutX="99.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TreeTableView layoutX="25.0" layoutY="101.0" prefHeight="202.0" prefWidth="306.0">
+                                    <TableView fx:id="tableViewAlertes" layoutX="50.0" layoutY="94.0" prefHeight="204.0" prefWidth="233.0">
                                        <columns>
-                                          <TreeTableColumn prefWidth="75.0" text="Nom" />
-                                          <TreeTableColumn prefWidth="75.0" text="Type" />
-                                          <TreeTableColumn prefWidth="75.0" text="Action" />
-                                          <TreeTableColumn text="Status" />
+                                          <TableColumn fx:id="tableColumnAlertesNom" prefWidth="75.0" text="Nom" />
+                                          <TableColumn fx:id="tableColumnAlertesAction" prefWidth="75.0" text="Action" />
+                                          <TableColumn fx:id="tableColumnAlertesStatus" text="Status" />
                                        </columns>
-                                    </TreeTableView>
-                                    <Button layoutX="48.0" layoutY="50.0" mnemonicParsing="false" text="Ajouter" />
-                                    <Button layoutX="118.0" layoutY="50.0" mnemonicParsing="false" text="Modifier" />
-                                    <Button layoutX="189.0" layoutY="50.0" mnemonicParsing="false" text="Supprimer" />
-                                    <Text layoutX="48.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capteurs" />
+                                    </TableView>
+                                    <Button fx:id="buttonAjouterAlerte" layoutX="61.0" layoutY="52.0" mnemonicParsing="false" text="Ajouter" />
+                                    <Button fx:id="buttonModifierAlerte" layoutX="131.0" layoutY="52.0" mnemonicParsing="false" text="Modifier" />
+                                    <Button fx:id="buttonSupprimerAlerte" layoutX="202.0" layoutY="52.0" mnemonicParsing="false" text="Supprimer" />
+                                    <Text layoutX="143.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alertes" />
                                  </children>
                               </AnchorPane>
                            </items>

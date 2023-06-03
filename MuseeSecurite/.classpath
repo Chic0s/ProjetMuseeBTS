@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/33611/Documents/BTS SIO/2 ème Année BTS SIO/SLAM/Test BD/sqljdbc42.jar">
+	<classpathentry kind="lib" path="C:/Users/jbapt/Documents/sqljdbc42.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -16,7 +16,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/33611/Documents/BTS SIO/2 ème Année BTS SIO/SLAM/JsonOrg/json-20230227.jar">
+	<classpathentry kind="lib" path="C:/Users/jbapt/Documents/json-20230227.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

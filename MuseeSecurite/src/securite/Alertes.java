@@ -1,20 +1,28 @@
 package securite;
 
+import java.sql.Date;
+
 public class Alertes {
 	
 	private int id;
-	private String date;
+	private Date date;
 	private String position;
 	private String emplacement;
-	private String etat;
+	private boolean etat;
+	private Action action;
+	private String nom;
+	private String description;
 	
-	public Alertes(int id, String horodatage, String localisation, String emplacement, String io) {
+	public Alertes(int id, Date horodatage, String localisation, String emplacement, boolean io, Action action, String nom, String description) {
 		super();
 		this.id = id;
 		this.date = horodatage;
 		this.position = localisation;
 		this.emplacement = emplacement;
 		this.etat = io;
+		this.action = action;
+		this.nom = nom;
+		this.description = description;
 	}
 	
 	public int getId() {
@@ -23,10 +31,10 @@ public class Alertes {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getPosition() {
@@ -41,16 +49,32 @@ public class Alertes {
 	public void setEmplacement(String emplacement) {
 		this.emplacement = emplacement;
 	}
-	public String getEtat() {
+	public boolean getEtat() {
 		return etat;
 	}
-	public void setEtat(String etat) {
-		this.etat = etat;
+	public void setAction(Action action) {
+		this.action = action;
 	}
+	public Action getAction() {
+		return action;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
-		return "Alertes [id=" + id + ", date=" + date + ", position=" + position + ", emplacement=" + emplacement
-				+ ", etat=" + etat + "]";
+		return "Alertes [id=" + id + ", nom=" + nom + ", description=" + description + ", date=" + date + ", position=" + position + ", emplacement=" + emplacement
+				+ ", etat=" + etat + ", action=" + action.getCapteur().getNom() + action.getCondition() + action.getValeur() + "]";
 	}
 
 

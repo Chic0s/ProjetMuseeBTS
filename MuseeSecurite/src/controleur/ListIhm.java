@@ -6,6 +6,8 @@ public enum ListIhm {
 	IHMTELEPHONEMODIFIER("/ihm/ModifierTelephone.fxml"),
 	IHMCAMERAAJOUTER("/ihm/AjouterCamera.fxml"),
 	IHMCAMERAMODIFIER("/ihm/ModifierCamera.fxml"),
+	IHMALERTEAJOUTER("/ihm/CreationModificationAlerte.fxml"),
+	IHMALERTEMODIFIER("/ihm/CreationModificationAlerte.fxml"),
 	IHMCAPTEURAJOUTER("/ihm/AjouterCapteur.fxml"),
 	IHMCAPTEURMODIFIER("/ihm/ModifierCapteur.fxml");
 	

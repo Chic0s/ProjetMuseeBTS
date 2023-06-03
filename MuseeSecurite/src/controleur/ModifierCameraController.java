@@ -44,7 +44,7 @@ public class ModifierCameraController {
 	public void openWindow(ElementDeSecurite selectedItem) {
         
 	        //Utilise les informations des Guetters et Setters pour les objets de type ElementDeSecurite
-	        //Pour pré-remplir les champs
+	        //Pour prï¿½-remplir les champs
 		
 		
 	    	String id = Integer.toString(selectedItem.getId());
@@ -66,7 +66,6 @@ public class ModifierCameraController {
 	@FXML
 	private void handleUpdateCameraAction(ActionEvent event) {
 		HandleActionController.getInstance().UpdateElementDeSecurite(nomCamera, emplacementCamera, modeleCamera, serveurCamera, etatCamera,idCamera, enregistrerCamera);
-		
 	}
 	
 	
