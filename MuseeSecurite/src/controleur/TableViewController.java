@@ -3,11 +3,13 @@ package controleur;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dao.AlertesDAO;
 import dao.ElementDeSecuriteDAO;
 import dao.InfoTelephoneDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import securite.Alertes;
 import securite.ElementDeSecurite;
 import securite.InfoTelephone;
 
@@ -43,5 +45,13 @@ public class TableViewController {
         view.getItems().setAll(InfoTelephoneDAO.getInstance().readAll());
         nomColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()+""));
         numeroColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumerotelephone()+""));
+    }
+    
+    public void initializeZoneTableViewAlertes(TableView<Alertes> view, TableColumn<Alertes, String> nomColumn, TableColumn<Alertes, String> conditionColumn,  TableColumn<Alertes, String> valeurColumn,  TableColumn<Alertes, String> etatColumn) {
+        view.getItems().setAll(AlertesDAO.getInstance().readAll());
+        nomColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()+""));
+        conditionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCondition()+""));
+        valeurColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValeur()+""));
+        etatColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEtat()+""));
     }
 }

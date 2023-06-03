@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.AjouterAlertesController">
+   <left>
+      <ListView fx:id="typeCapteurListView" prefHeight="367.0" prefWidth="158.0" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une Alerte" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Arial" size="29.0" />
+         </font>
+      </Text>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="12.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouvelles Alertes : " wrappingWidth="102.13677978515625" />
+            <Text layoutX="12.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capteur : " wrappingWidth="102.13677978515625" />
+            <Text layoutX="12.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat :" wrappingWidth="102.13677978515625" />
+            <Text layoutX="12.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition :" wrappingWidth="102.13677978515625" />
+            <ComboBox fx:id="conditionComboBox" layoutX="84.0" layoutY="138.0" prefWidth="150.0" />
+            <CheckBox fx:id="etatAlertes" layoutX="48.0" layoutY="119.0" mnemonicParsing="false" />
+            <Button fx:id="enregistrerAlertes" layoutX="359.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleAddAlertesAction" text="Enregistrer" />
+            <Text layoutX="8.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valeur :" wrappingWidth="102.13677978515625" />
+            <TextField fx:id="valeurAlertes" layoutX="63.0" layoutY="174.0" />
+            <Label fx:id="nomCapteur" layoutX="70.0" layoutY="91.0" text=" " />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

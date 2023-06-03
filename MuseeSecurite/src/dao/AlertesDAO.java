@@ -4,16 +4,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import securite.Alertes;
 
 public class AlertesDAO extends DAO<Alertes>{
-
-	private static final String EMPLACEMENT = "Emplacement";
-	private static final String POSITION = "Position";
+	private static final String TABLE = "Alerte";
+	private static final String NOM = "Nom";
+	private static final String CONDITION = "Condition";
+	private static final String VALEUR = "Valeur";
 	private static final String ETAT = "Etat";
-	private static final String TABLE = "Capteur";
-	private static final String DATE = "Date";
 	private static final String CLE_PRIMAIRE = "ID";
 	
 	private static AlertesDAO instance=null; 
@@ -34,13 +35,13 @@ public class AlertesDAO extends DAO<Alertes>{
 	public boolean create(Alertes alerte) {
 		boolean success=true;
 		try {
-			String requete = "INSERT INTO "+TABLE+" ("+DATE+", "+POSITION+", "+EMPLACEMENT+", "+ETAT+") VALUES (?, ?, ?, ?)";
+			String requete = "INSERT INTO "+TABLE+" ("+NOM+", "+CONDITION+", "+VALEUR+", "+ETAT+") VALUES (?, ?, ?, ?)";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
 			
-			pst.setString(1, alerte.getDate());
-			pst.setString(2, alerte.getPosition());
-			pst.setString(3, alerte.getEmplacement());
-			pst.setString(4, alerte.getEtat());
+			pst.setString(1, alerte.getNom());
+			pst.setString(2, alerte.getCondition());
+			pst.setString(3, alerte.getValeur());
+			pst.setBoolean(4, alerte.getEtat());
 			
 
 			pst.executeUpdate();
@@ -82,18 +83,18 @@ public class AlertesDAO extends DAO<Alertes>{
 	public boolean update(Alertes alerte) {
 		boolean success=true;
 
-		String date = alerte.getDate();
-		String position =alerte.getPosition();
-		String emplacement = alerte.getEmplacement();
-		String etat =  alerte.getEtat();
+		String nom = alerte.getNom();
+		String position =alerte.getCondition();
+		String emplacement = alerte.getValeur();
+		Boolean etat =  alerte.getEtat();
 		int id = alerte.getId();
 		try {
-			String requete = "UPDATE "+TABLE+" SET nomav = ?, loc = ?, capacite = ? WHERE "+CLE_PRIMAIRE+" = ?";
+			String requete = "UPDATE "+TABLE+" SET nom = ?, condition = ?, valeur = ?, etat = ?  WHERE "+CLE_PRIMAIRE+" = ?";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
-			pst.setString(1,date); 
+			pst.setString(1,nom); 
 			pst.setString(2,position); 
 			pst.setString(3, emplacement);
-			pst.setString(4, etat);
+			pst.setBoolean(4, etat);
 			pst.setInt(5, id) ;
 			pst.executeUpdate() ;
 			
@@ -105,6 +106,27 @@ public class AlertesDAO extends DAO<Alertes>{
 		return success;	
 	}
 
+	
+	public List<Alertes> readAll() {
+		List<Alertes> elemList = new ArrayList<Alertes>();
+		Alertes elem = null;
+		try {
+			String requete = "SELECT * FROM " + TABLE;
+			ResultSet rep = Connexion.executeQuery(requete);
+			while(rep.next()) {
+				int idZone = rep.getInt(1);
+				elem = this.read(idZone);
+				elemList.add(elem);
+			}
+	    } catch (SQLException e) {
+	        // e.printStackTrace();
+	        System.out.println("Échec de la tentative d'interrogation Select * : " + e.getMessage()) ;
+	    }
+		System.out.println("Alertes.size = " + elemList.size());
+		return elemList;
+	}
+	
+	
 	@Override
 	public Alertes read(int id) {
 		Alertes alerte = null;
@@ -112,11 +134,11 @@ public class AlertesDAO extends DAO<Alertes>{
 			String requete = "SELECT * FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = "+id;
 			ResultSet rs = Connexion.executeQuery(requete);
 			rs.next();
-			String date = rs.getString(DATE);
-			String position = rs.getString(POSITION);
-			String emplacement = rs.getString(EMPLACEMENT);
-			String etat = rs.getString(ETAT);
-			alerte = new Alertes (id, date, position, emplacement, etat);
+			String nom = rs.getString(NOM);
+			String condition = rs.getString(CONDITION);
+			String valeur = rs.getString(VALEUR);
+			boolean etat = rs.getBoolean(ETAT);
+			alerte = new Alertes (id, nom, condition, valeur, etat);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

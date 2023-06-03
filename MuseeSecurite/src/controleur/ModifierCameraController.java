@@ -41,10 +41,6 @@ public class ModifierCameraController {
 	}
 	
 	public void openWindow(ElementDeSecurite selectedItem) {
-        
-	        //Utilise les informations des Guetters et Setters pour les objets de type ElementDeSecurite
-	        //Pour pré-remplir les champs
-		
 		
 	    	String id = Integer.toString(selectedItem.getId());
 	        String nom = selectedItem.getNom();

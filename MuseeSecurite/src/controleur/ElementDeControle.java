@@ -3,7 +3,8 @@ package controleur;
 public enum ElementDeControle {
     CAPTEUR("Capteur"),
     CAMERA("Camera"),
-    TELEPHONE("Telephone");
+    TELEPHONE("Telephone"),
+    ALERTES("Alertes");
 	
 	private String type;
 
